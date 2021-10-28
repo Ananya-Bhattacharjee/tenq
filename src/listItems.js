@@ -9,10 +9,11 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import page1 from './Page1';
 
 export const mainListItems = (
   <div>
-    <ListItem button>
+    <ListItem button onClick = {page1}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
