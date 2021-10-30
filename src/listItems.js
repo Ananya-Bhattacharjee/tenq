@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -9,11 +10,17 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import page1 from './Page1';
-
+import {View} from './Views';
+function onClickHandler(page_code){
+  const element = <View page={page_code} />;
+ReactDOM.render(
+  element,
+  document.getElementById('root'))
+}
 export const mainListItems = (
+  
   <div>
-    <ListItem button onClick = {page1}>
+    <ListItem button onClick={()=>onClickHandler("dashboard")}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
@@ -25,7 +32,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Past responses" />
     </ListItem>
-    <ListItem button>
+    <ListItem button onClick={()=>onClickHandler("page1")}>
     <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
@@ -38,6 +45,8 @@ export const mainListItems = (
       <ListItemText primary="Reports" />
     </ListItem>
   </div>
+  
+  
 );
 
 // export const secondaryListItems = (

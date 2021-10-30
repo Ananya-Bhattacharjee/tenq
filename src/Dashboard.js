@@ -22,7 +22,7 @@ import {mainListItems} from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-
+import Page1 from './Page1';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -197,6 +197,8 @@ export default function Dashboard() {
           </Box>
         </Container>
       </main>
+     
     </div>
+    
   );
 }
