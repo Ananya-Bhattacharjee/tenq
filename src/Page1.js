@@ -138,7 +138,7 @@ export default function Page1(){
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            TenQ Question 1
+            Question 1
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -171,16 +171,12 @@ export default function Page1(){
             {/* Chart */}
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <h1>put question here</h1>
+                <h1>What part of the situation is the most troubling?
+                </h1>
+                <textarea name="Text1" cols="40" rows="5"></textarea>
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-              <h1>put answer box here</h1>
-              </Paper>
-            </Grid>
+
           </Grid>
           <Box pt={4}>
             <Copyright />
