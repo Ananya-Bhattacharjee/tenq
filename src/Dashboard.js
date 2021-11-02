@@ -1,10 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
@@ -23,6 +25,7 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import Page1 from './Page1';
+import {View} from './Views';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -113,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 240,
+    height: 130,
   },
 }));
 
@@ -127,7 +130,12 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+  function onClickHandler(page_code){
+    const element = <View page={page_code} />;
+  ReactDOM.render(
+    element,
+    document.getElementById('root'))
+  }
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -172,23 +180,22 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
+          <Grid container spacing={3} justify="center" alignItems="center" direction="column">
             {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
+            <Grid item xs={12}>
+            {/* //<Paper className={fixedHeightPaper}> */}
+              <Button onClick={()=>onClickHandler("page1")} color = 'secondary' variant="outlined">
+                <h1>New survey</h1>
+              </Button>
+              {/* </Paper> */}
             </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid>
+           
             {/* Recent Orders */}
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
+            <Paper className={classes.paper}>
+              <Button>
+                <h1>Continue survey</h1>
+              </Button>
               </Paper>
             </Grid>
           </Grid>
