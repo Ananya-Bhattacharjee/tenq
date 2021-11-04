@@ -1,6 +1,7 @@
 import React from "react";
 import Dashboard from "./Dashboard";
 import Page1 from "./Page1";
+import Page2 from "./Page2";
 export class View extends React.Component{
 
     
@@ -9,6 +10,8 @@ export class View extends React.Component{
         <div>
           {this.props.page === 'dashboard' ? <Dashboard/> : null}
           {this.props.page === 'page1' ? <Page1 /> : null}
+          {this.props.page === 'page2' ? <Page2 /> : null}
+
         </div>
       )
     }

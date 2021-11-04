@@ -1,10 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
@@ -22,6 +24,8 @@ import {mainListItems} from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import Page2 from './Page2';
+import {View} from './Views';
 const drawerWidth = 240;
 function Copyright() {
     return (
@@ -122,6 +126,11 @@ export default function Page1(){
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  function onClickHandler(page_code){
+    const element = <View page={page_code} />;ReactDOM.render(
+      element,
+      document.getElementById('root'))
+    }
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
     return (
         <div className={classes.root}>
@@ -171,10 +180,16 @@ export default function Page1(){
             {/* Chart */}
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <h1>What part of the situation is the most troubling?
+                <h1>What's the situation? Feel free to
+                explain it in as much detail as you'd
+                like.
                 </h1>
                 <textarea name="Text1" cols="40" rows="5"></textarea>
               </Paper>
+              <Button onClick={()=>onClickHandler("page2")} color = 'primary' variant="outlined">
+              <h1>Next Page</h1>
+            </Button>
+
             </Grid>
 
           </Grid>

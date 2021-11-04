@@ -25,6 +25,8 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import Page1 from './Page1';
+import Page2 from './Page2';
+
 import {View} from './Views';
 function Copyright() {
   return (
