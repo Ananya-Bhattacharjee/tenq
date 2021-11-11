@@ -22,6 +22,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import {mainListItems} from './listItems';
 import Chart from './Chart';
+import Deposits from './Deposits';
+import Orders from './Orders';
+import Page2 from './Page2';
 import {View} from './Views';
 const drawerWidth = 240;
 function Copyright() {
@@ -114,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
 }));
-export default function Page2(){
+export default function Page7(){
     const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -144,7 +147,7 @@ export default function Page2(){
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Question 2
+            Question 7
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -177,8 +180,12 @@ export default function Page2(){
             {/* Chart */}
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <h1>What part of the situation is the
-                most troubling?
+                <h1>Retype the summary of the situation
+                in the following format:
+                <br/>Trigger:
+                <br/>Thought:
+                <br/>Feeling:
+                <br/>Behaviour:
                 </h1>
                 <textarea name="Text1" cols="40" rows="5"></textarea>
               </Paper>
@@ -187,12 +194,12 @@ export default function Page2(){
             </Grid>
             <Grid item xs={11}>
                 
-                  <Button onClick={()=>onClickHandler("page1")} color = 'primary' variant="outlined">Previous</Button>
+                  <Button onClick={()=>onClickHandler("page6")} color = 'primary' variant="outlined">Previous</Button>
                 
               </Grid>
               <Grid item xs={1}>
                 
-                  <Button onClick={()=>onClickHandler("page3")} color = 'primary' variant="outlined">Next</Button>
+                  <Button onClick={()=>onClickHandler("page8")} color = 'primary' variant="outlined">Next</Button>
                
               </Grid>
 

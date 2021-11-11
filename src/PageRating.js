@@ -157,7 +157,7 @@ export default function PageRating(){
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Question 2
+            Reflection & Rating
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -194,7 +194,9 @@ export default function PageRating(){
             {/* Chart */}
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <h1>Rate your stress from 0 to 10
+                <h1>Think of a particular situation where you felt stressed or had a negative emotion, which you can try to reflect
+                on as you go through this activity. It could be a current situation, one in the past, or one you anticipate in the future.
+                <br/><br/> Rate your stress from 0 to 10
                 </h1>
               
               
@@ -225,12 +227,13 @@ export default function PageRating(){
             </Grid>
             <Grid item xs={11}>
                 
-                  <Button onClick={()=>onClickHandler("page1")} color = 'primary' variant="outlined" size="large">Previous</Button>
+                <Button onClick={()=>onClickHandler("page1")} color = 'primary' variant="outlined" disabled>Previous</Button>
+          
                 
               </Grid>
               <Grid item xs={1}>
                 
-                  <Button onClick={()=>onClickHandler("page_rating")} color = 'primary' variant="outlined" size="large">Next</Button>
+                  <Button onClick={()=>onClickHandler("page1")} color = 'primary' variant="outlined">Next</Button>
                
               </Grid>
           </Grid>

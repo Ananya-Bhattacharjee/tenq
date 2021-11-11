@@ -24,7 +24,7 @@ export const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="Home" />
     </ListItem>
     <ListItem button>
     <ListItemIcon>
@@ -32,7 +32,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Past responses" />
     </ListItem>
-    <ListItem button onClick={()=>onClickHandler("page1")}>
+    <ListItem button onClick={()=>onClickHandler("pagerating")}>
     <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
