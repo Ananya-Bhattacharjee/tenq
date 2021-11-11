@@ -21,6 +21,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import {mainListItems} from './listItems';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
@@ -119,6 +123,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function Page1(){
     const classes = useStyles();
+    const [spacing, setSpacing] = React.useState(2);
+  
+
+  const handleChange = (event) => {
+    setSpacing(Number(event.target.value));
+  };
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -147,7 +157,7 @@ export default function Page1(){
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Question 1
+            Question 2
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -176,26 +186,56 @@ export default function Page1(){
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
+          <Grid container 
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={3}>
             {/* Chart */}
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <h1>What's the situation? Feel free to
-                explain it in as much detail as you'd
-                like.
+                <h1>Rate your stress from 0 to 10
                 </h1>
-                <textarea name="Text1" cols="40" rows="5"></textarea>
-              </Paper>
-              <Button onClick={()=>onClickHandler("page2")} color = 'primary' variant="outlined">
-              <h1>Next Page</h1>
-            </Button>
-
+              
+              
+            
+            <Grid item>
+              <FormLabel>
+                
+              </FormLabel>
+              <RadioGroup
+                name="Rating"
+                aria-label="spacing"
+                value={spacing.toString()}
+                onChange={handleChange}
+                row
+              >
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+                  <FormControlLabel
+                    key={value}
+                    value={value.toString()}
+                    control={<Radio />}
+                    label={value.toString()}
+                  />
+                ))}
+              </RadioGroup>
             </Grid>
-
+            </Paper>
+            </Grid>
+            <Grid item xs={11}>
+                
+                  <Button onClick={()=>onClickHandler("page1")} color = 'primary' variant="outlined">Previous</Button>
+                
+              </Grid>
+              <Grid item xs={1}>
+                
+                  <Button onClick={()=>onClickHandler("page_rating")} color = 'primary' variant="outlined">Next</Button>
+               
+              </Grid>
           </Grid>
-          <Box pt={4}>
+          {/* <Box pt={4}>
             <Copyright />
-          </Box>
+          </Box> */}
         </Container>
       </main>
      

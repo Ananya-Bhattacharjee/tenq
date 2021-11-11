@@ -186,11 +186,19 @@ export default function Page1(){
                 </h1>
                 <textarea name="Text1" cols="40" rows="5"></textarea>
               </Paper>
-              <Button onClick={()=>onClickHandler("page2")} color = 'primary' variant="outlined">
-              <h1>Next Page</h1>
-            </Button>
+             
 
             </Grid>
+            <Grid item xs={11}>
+                
+                  <Button onClick={()=>onClickHandler("page1")} color = 'primary' variant="outlined" disabled>Previous</Button>
+                
+              </Grid>
+              <Grid item xs={1}>
+                
+                  <Button onClick={()=>onClickHandler("page_rating")} color = 'primary' variant="outlined">Next</Button>
+               
+              </Grid>
 
           </Grid>
           <Box pt={4}>
