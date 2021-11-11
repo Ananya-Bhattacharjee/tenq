@@ -121,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
 }));
-export default function Page1(){
+export default function PageRating(){
     const classes = useStyles();
     const [spacing, setSpacing] = React.useState(2);
   
@@ -216,6 +216,7 @@ export default function Page1(){
                     value={value.toString()}
                     control={<Radio />}
                     label={value.toString()}
+                    labelPlacement="top"
                   />
                 ))}
               </RadioGroup>
@@ -224,12 +225,12 @@ export default function Page1(){
             </Grid>
             <Grid item xs={11}>
                 
-                  <Button onClick={()=>onClickHandler("page1")} color = 'primary' variant="outlined">Previous</Button>
+                  <Button onClick={()=>onClickHandler("page1")} color = 'primary' variant="outlined" size="large">Previous</Button>
                 
               </Grid>
               <Grid item xs={1}>
                 
-                  <Button onClick={()=>onClickHandler("page_rating")} color = 'primary' variant="outlined">Next</Button>
+                  <Button onClick={()=>onClickHandler("page_rating")} color = 'primary' variant="outlined" size="large">Next</Button>
                
               </Grid>
           </Grid>
