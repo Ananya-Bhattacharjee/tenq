@@ -191,12 +191,12 @@ export default function Page1(){
             </Grid>
             <Grid item xs={11}>
                 
-                  <Button onClick={()=>onClickHandler("page1")} color = 'primary' variant="outlined" disabled>Previous</Button>
+                  <Button onClick={()=>onClickHandler("pagerating")} color = 'primary' variant="outlined">Previous</Button>
                 
               </Grid>
               <Grid item xs={1}>
                 
-                  <Button onClick={()=>onClickHandler("page_rating")} color = 'primary' variant="outlined">Next</Button>
+                  <Button onClick={()=>onClickHandler("page2")} color = 'primary' variant="outlined">Next</Button>
                
               </Grid>
 

@@ -21,10 +21,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import {mainListItems} from './listItems';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
@@ -121,14 +117,8 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
 }));
-export default function PageRating(){
+export default function Page8(){
     const classes = useStyles();
-    const [spacing, setSpacing] = React.useState(2);
-  
-
-  const handleChange = (event) => {
-    setSpacing(Number(event.target.value));
-  };
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -157,7 +147,7 @@ export default function PageRating(){
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Reflection & Rating
+            Question 8
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -186,58 +176,34 @@ export default function PageRating(){
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container 
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          spacing={3}>
+          <Grid container spacing={3}>
             {/* Chart */}
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <h1>Think of a particular situation where you felt stressed or had a negative emotion, which you can try to reflect
-                on as you go through this activity. It could be a current situation, one in the past, or one you anticipate in the future.
-                <br/><br/> Rate your stress from 0 to 10
+                <h1>Consider whether the trigger
+                truly justifies this type of thinking.
+                Explain below.
                 </h1>
-              
-              
-            
-            <Grid item>
-              <FormLabel>
-                
-              </FormLabel>
-              <RadioGroup
-                name="Rating"
-                aria-label="spacing"
-                value={spacing.toString()}
-                onChange={handleChange}
-                row
-              >
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
-                  <FormControlLabel
-                    key={value}
-                    value={value.toString()}
-                    control={<Radio />}
-                    label={value.toString()}
-                  />
-                ))}
-              </RadioGroup>
-            </Grid>
-            </Paper>
+                <textarea name="Text1" cols="40" rows="5"></textarea>
+              </Paper>
+             
+
             </Grid>
             <Grid item xs={11}>
                 
-                  <Button onClick={()=>onClickHandler("page1")} color = 'primary' variant="outlined" disabled>Previous</Button>
+                  <Button onClick={()=>onClickHandler("page7")} color = 'primary' variant="outlined">Previous</Button>
                 
               </Grid>
               <Grid item xs={1}>
                 
-                  <Button onClick={()=>onClickHandler("page1")} color = 'primary' variant="outlined">Next</Button>
+                  <Button onClick={()=>onClickHandler("page9")} color = 'primary' variant="outlined">Next</Button>
                
               </Grid>
+
           </Grid>
-          {/* <Box pt={4}>
+          <Box pt={4}>
             <Copyright />
-          </Box> */}
+          </Box>
         </Container>
       </main>
      

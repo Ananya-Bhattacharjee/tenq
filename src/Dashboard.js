@@ -186,7 +186,7 @@ export default function Dashboard() {
             {/* Chart */}
             <Grid item xs={12}>
             {/* //<Paper className={fixedHeightPaper}> */}
-              <Button onClick={()=>onClickHandler("page1")} color = 'secondary' variant="outlined">
+              <Button onClick={()=>onClickHandler("pagerating")} color = 'secondary' variant="outlined">
                 <h1>New survey</h1>
               </Button>
               {/* </Paper> */}
