@@ -118,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 550,
+    height: window.innerHeight*0.74,
   },
 }));
 export default function PageRating(){
