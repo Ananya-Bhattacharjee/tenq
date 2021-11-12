@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 240,
+    height: 550,
   },
 }));
 export default function Page6(){
@@ -180,8 +180,7 @@ export default function Page6(){
             {/* Chart */}
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <h1>When you have these feelings, what actions do you take? What ac-
-                tions do you avoid?
+                <h1>When you have these feelings, what actions do you take? What actions do you avoid?
                 </h1>
                 <textarea name="Text1" cols="40" rows="5"></textarea>
               </Paper>
