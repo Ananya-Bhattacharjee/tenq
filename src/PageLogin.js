@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    width: 100,
-    height: 140,
+    width: 500,
+    height: 500,
     marginBottom: 40,
   },
 
@@ -68,7 +68,7 @@ export default function App() {
       <View style={styles.container}>
         <Image
           style={styles.logo}
-          source={{uri: 'https://i1.sndcdn.com/avatars-000093870373-tdyo8v-t500x500.jpg'}}
+          source={{uri: 'https://sites.google.com/site/josephjaywilliams/_/rsrc/1322072013994/home/NIPS20picture.jpeg'}}
         />
       <StatusBar style="auto" />
       <View style={styles.inputView}>
