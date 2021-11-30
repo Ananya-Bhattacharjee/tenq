@@ -78,7 +78,7 @@
         <View style={styles.fixToText}>
           <Button
             title="Quit"
-            onPress={() => navigation.popToTop()}
+            onPress={() => navigation.goBack()}
             
           />
           <Button
