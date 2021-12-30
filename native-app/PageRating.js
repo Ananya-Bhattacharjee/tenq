@@ -24,15 +24,21 @@
  import styles from './styles';
  
  
- 
+
  
  
  const Separator = () => (
     <View style={styles.separator} />
   );
+
   
   const PageRating = ({navigation}) => {
-    const [text, onChangeText] = React.useState(null);
+    const [text, setText] = React.useState();
+    function retVal(value) {
+      setText(value);
+      console.log(value);
+      // write value to file
+    };
     const ratingScale=[
         {label: "0", value:0},
         {label: "1", value:1},
@@ -66,7 +72,7 @@
             formHorizontal={true}
             buttonSize={10}
             labelHorizontal={false}
-            onPress={(value)=>{}}
+            onPress={(value)=>retVal(value)}
           />
 
         </View>

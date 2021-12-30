@@ -26,6 +26,7 @@ import PageRating from './PageRating'
 import PageLogin from './PageLogin';
 import PageReRating from './PageReRating'
 import PageRatingDraw from './PageRatingDraw'
+import PageSignup from './PageSignup'
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -52,6 +53,7 @@ const App: () => Node = () => {
   
   <Stack.Screen name="PageReRating" component={PageReRating} />
   <Stack.Screen name="PageLogin" component={PageLogin} />
+  <Stack.Screen name="PageSignup" component={PageSignup} />
 </Stack.Navigator>
   return (   
    
