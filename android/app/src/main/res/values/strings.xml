@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">tenq</string>
+    <string name="title_activity_main">tenq</string>
+    <string name="package_name">io.ionic.tenq</string>
+    <string name="custom_url_scheme">io.ionic.tenq</string>
+</resources>

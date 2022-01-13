@@ -13,7 +13,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './home'
-import Blank from './blank'
+import History from './history'
 import Page6 from './Page6'
 import Page5 from './Page5';
 import Page4 from './Page4';
@@ -40,7 +40,7 @@ const App: () => Node = () => {
   }}>
     
 <Stack.Screen name="Dashboard" component={Home}/>
-  <Stack.Screen name="NewPage" component={Blank} />
+  {/*<Stack.Screen name="NewPage" component={Blank} />*/}
   <Stack.Screen name="Page6" component={Page6} />
   <Stack.Screen name="Page1" component={Page1} />
   <Stack.Screen name="Page3" component={Page3} />
@@ -63,7 +63,7 @@ const App: () => Node = () => {
       <Drawer.Navigator>
         <Drawer.Screen name="TenQ" component={MyStack}/>
         <Drawer.Screen name="New Survey" component={PageRatingDraw} />
-        <Drawer.Screen name="Past responses" component={Blank} />
+        <Drawer.Screen name="Past responses" component={History} />
         <Drawer.Screen name="Logout" component={PageLogin} options={{headerShown: false,  swipeEnabled: false  }}/>
       </Drawer.Navigator>
  

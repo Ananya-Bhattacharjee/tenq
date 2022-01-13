@@ -141,7 +141,7 @@ export default function PageLogin({navigation}) {
       <TouchableOpacity onPress={()=>checkCred()}>
         <Text style={styles.forgot_button}>Forgot Password?</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={()=>makeUser()}>
+      <TouchableOpacity onPress={()=>navigation.navigate("PageSignup")}>
         <Text style={styles.forgot_button}>Don't have an account?</Text>
       </TouchableOpacity>
 

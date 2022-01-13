@@ -65,6 +65,9 @@ const styles = StyleSheet.create({
 export default function PageSignup({navigation}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirm_password, setConfirmPassword] = useState("");
+    const [first_name, setFirstName] = useState("")
+    const [last_name, setLastName] = useState("")
     function checkCred() {
       var request = new XMLHttpRequest();
       
@@ -78,7 +81,26 @@ export default function PageSignup({navigation}) {
       request.send("username=1234&password=1234");
       // write value to file
     };
-    
+    function makeUser() {
+      var request2 = new XMLHttpRequest();
+      
+      request2.onreadystatechange = function() {
+        if (request2.readyState === XMLHttpRequest.DONE) {
+          console.log(request2.response)
+          navigation.navigate("PageLogin")
+        }
+      }
+      request2.open('POST', 'https://tenq.chenpan.ca/user');
+      request2.setRequestHeader('Content-Type', 'application/json');
+      request2.setRequestHeader( 'Accept',"application/json, text/plain, /")
+      if (password == confirm_password){
+        const obj = {"firstname":first_name, "lastname":last_name, "email":email, "password":password, "stressLevel":10}
+        const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+        request2.send(blob);
+        
+      }
+      // write value to file
+    };
     return (
       <ScrollView>
       <View style={styles.container}>
@@ -86,7 +108,24 @@ export default function PageSignup({navigation}) {
           style={styles.logo}
           source={{uri: 'https://sites.google.com/site/josephjaywilliams/_/rsrc/1322072013994/home/NIPS20picture.jpeg'}}
         />
-      
+
+        <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="First Name."
+          placeholderTextColor="#003f5c"
+          onChangeText={(first_name) => setFirstName(first_name)}
+        />
+      </View>
+      <View style={styles.inputView}>
+      <TextInput
+        style={styles.TextInput}
+        placeholder="Last Name."
+        placeholderTextColor="#003f5c"
+        onChangeText={(last_name) => setLastName(last_name)}
+      />
+    </View>        
+
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
@@ -105,16 +144,26 @@ export default function PageSignup({navigation}) {
           onChangeText={(password) => setPassword(password)}
         />
       </View>
+      <View style={styles.inputView}>
+      <TextInput
+        style={styles.TextInput}
+        placeholder="Confirm Password."
+        placeholderTextColor="#003f5c"
+        secureTextEntry={true}
+        onChangeText={(confirm_password) => setConfirmPassword(confirm_password)}
+      />
+    </View>
 
-      <TouchableOpacity onPress={()=>checkCred()}>
+
+      {/*<TouchableOpacity onPress={()=>checkCred()}>
         <Text style={styles.forgot_button}>Forgot Password?</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={()=>checkCred()}>
         <Text style={styles.forgot_button}>Don't have an account?</Text>
-      </TouchableOpacity>
+    </TouchableOpacity>*/}
 
-      <TouchableOpacity style={styles.loginBtn} onPress={()=>navigation.navigate('Dashboard')}>
-        <Text style={styles.loginText}>LOGIN</Text>
+      <TouchableOpacity style={styles.loginBtn} onPress={()=>makeUser()}>
+        <Text style={styles.loginText}>Create Account</Text>
       </TouchableOpacity>
       </View>
       </ScrollView>

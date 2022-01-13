@@ -1,0 +1,8 @@
+{
+	"appId": "io.ionic.tenq",
+	"appName": "tenq",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "build",
+	"cordova": {}
+}
