@@ -32,7 +32,25 @@
   );
   
   const PageRating = ({navigation}) => {
-    const [text, onChangeText] = React.useState(null);
+    const [rating2, setRating2] = React.useState();
+    function retVal(value) {
+      setRating2(value);
+      console.log(value);
+      // write value to file
+    };
+    function onSubmit(){
+      // console.log(rating1)
+      // console.log(respnse1);
+      // console.log(response3)
+      // console.log(response4)
+      // console.log(response5)
+      // console.log(response6)
+      // console.log(response7)
+      // console.log(response8)
+      // console.log(response9)
+      // console.log(rating2)
+      navigation.popToTop()
+    }
     const ratingScale=[
         {label: "0", value:0},
         {label: "1", value:1},
@@ -80,7 +98,7 @@
           />
           <Button
             title="Submit"
-            onPress={() => navigation.popToTop()}
+            onPress={() => onSubmit()}
           />
         </View>
       </View>

@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 50,
+    paddingTop: 50
   },
 
   logo: {
-    width: 500,
-    height: 500,
-    marginBottom: 40,
+    width: 250,
+    height: 150,
+    marginBottom: 200,
   },
 
 
@@ -116,7 +116,7 @@ export default function PageLogin({navigation}) {
       <View style={styles.container}>
         <Image
           style={styles.logo}
-          source={{uri: 'https://sites.google.com/site/josephjaywilliams/_/rsrc/1322072013994/home/NIPS20picture.jpeg'}}
+          source={require('./TenQ.png')}
         />
       
       <View style={styles.inputView}>

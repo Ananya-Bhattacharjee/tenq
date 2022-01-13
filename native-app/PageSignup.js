@@ -1,4 +1,3 @@
-
 import React, { Component, useState } from "react";
 import {
   StyleSheet,
@@ -65,22 +64,10 @@ const styles = StyleSheet.create({
 export default function PageSignup({navigation}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     const [confirm_password, setConfirmPassword] = useState("");
     const [first_name, setFirstName] = useState("")
     const [last_name, setLastName] = useState("")
-    function checkCred() {
-      var request = new XMLHttpRequest();
-      
-      request.onreadystatechange = function() {
-        if (request.readyState === 4) {
-          console.log(request.responseText)
-        }
-      }
-      request.open('POST', 'https://tenq.chenpan.ca/login/');
-      request.setRequestHeader('Content-Type', 'text/html')
-      request.send("username=1234&password=1234");
-      // write value to file
-    };
     function makeUser() {
       var request2 = new XMLHttpRequest();
       
@@ -106,7 +93,7 @@ export default function PageSignup({navigation}) {
       <View style={styles.container}>
         <Image
           style={styles.logo}
-          source={{uri: 'https://sites.google.com/site/josephjaywilliams/_/rsrc/1322072013994/home/NIPS20picture.jpeg'}}
+          source={require('./TenQ.png')}
         />
 
         <View style={styles.inputView}>
@@ -154,14 +141,12 @@ export default function PageSignup({navigation}) {
       />
     </View>
 
-
       {/*<TouchableOpacity onPress={()=>checkCred()}>
         <Text style={styles.forgot_button}>Forgot Password?</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={()=>checkCred()}>
         <Text style={styles.forgot_button}>Don't have an account?</Text>
     </TouchableOpacity>*/}
-
       <TouchableOpacity style={styles.loginBtn} onPress={()=>makeUser()}>
         <Text style={styles.loginText}>Create Account</Text>
       </TouchableOpacity>

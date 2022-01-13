@@ -31,7 +31,7 @@
   );
   
   const Page7 = ({navigation}) => {
-    const [text, onChangeText] = React.useState(null);
+    const [response7, onChangeText] = React.useState(null);
     return(
     <SafeAreaView style={styles.container}>
       <View style={styles.fixToTextCenter}>
@@ -55,7 +55,7 @@
       multiline={true}
         style={styles.input}
         onChangeText={onChangeText}
-        value={text}
+        value={response7}
       />
       </View>
       <Separator />

@@ -35,8 +35,8 @@ const Drawer = createDrawerNavigator();
 const App: () => Node = () => {
    
   MyStack = () => 
-<Stack.Navigator screenOptions={{
-    headerShown: false
+  <Stack.Navigator screenOptions={{
+  headerShown: false
   }}>
     
 <Stack.Screen name="Dashboard" component={Home}/>
