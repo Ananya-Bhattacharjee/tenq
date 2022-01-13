@@ -33,9 +33,9 @@
 
   
   const PageRating = ({navigation}) => {
-    const [text, setText] = React.useState();
+    const [rating1, setRating1] = React.useState();
     function retVal(value) {
-      setText(value);
+      setRating1(value);
       console.log(value);
       // write value to file
     };

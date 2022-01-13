@@ -65,17 +65,20 @@ const styles = StyleSheet.create({
 export default function PageSignup({navigation}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    function checkCred() {
-      var request = new XMLHttpRequest();
+    function makeUser() {
+      var request2 = new XMLHttpRequest();
       
-      request.onreadystatechange = function() {
-        if (request.readyState === 4) {
-          console.log(request.responseText)
+      request2.onreadystatechange = function() {
+        if (request2.readyState === XMLHttpRequest.DONE) {
+          console.log(request2.response)
         }
       }
-      request.open('POST', 'https://tenq.chenpan.ca/login/');
-      request.setRequestHeader('Content-Type', 'text/html')
-      request.send("username=1234&password=1234");
+      request2.open('POST', 'https://tenq.chenpan.ca/user');
+      request2.setRequestHeader('Content-Type', 'application/json');
+      request2.setRequestHeader( 'Accept',"application/json, text/plain, /")
+      const obj = {"username":"test2", "password":"aA123456", "stressLevel":10}
+      const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+      request2.send(blob);
       // write value to file
     };
     
@@ -106,12 +109,7 @@ export default function PageSignup({navigation}) {
         />
       </View>
 
-      <TouchableOpacity onPress={()=>checkCred()}>
-        <Text style={styles.forgot_button}>Forgot Password?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={()=>checkCred()}>
-        <Text style={styles.forgot_button}>Don't have an account?</Text>
-      </TouchableOpacity>
+     
 
       <TouchableOpacity style={styles.loginBtn} onPress={()=>navigation.navigate('Dashboard')}>
         <Text style={styles.loginText}>LOGIN</Text>
