@@ -81,7 +81,7 @@ export default function PageSignup({navigation}) {
       request2.setRequestHeader('Content-Type', 'application/json');
       request2.setRequestHeader( 'Accept',"application/json, text/plain, /")
       if (password == confirm_password){
-        const obj = {"firstname":first_name, "lastname":last_name, "email":email, "password":password, "stressLevel":10}
+        const obj = {"firstname":first_name, "lastname":last_name, "username":email, "password":password, "stressLevel":10}
         const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
         request2.send(blob);
         
