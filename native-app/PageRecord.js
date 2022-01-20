@@ -1,119 +1,179 @@
-import React, { Component, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  Button,
-  TouchableOpacity,
-  AppRegistry,
-  ScrollView,
-} from "react-native";
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: 50,
-  },
-
-  logo: {
-    width: 500,
-    height: 500,
-    marginBottom: 40,
-  },
+ import React from 'react';
 
 
-  inputView: {
-    backgroundColor: "#FFC0CB",
-    borderRadius: 30,
-    width: "70%",
-    height: 45,
-    marginBottom: 20,
-
-    alignItems: "center",
-  },
-
-  TextInput: {
-    height: 50,
-    flex: 1,
-    padding: 10,
-    marginLeft: 20,
-  },
-
-  forgot_button: {
-    height: 15,
-    marginBottom: 10,
-  },
-
-  loginBtn: {
-    width: "80%",
-    borderRadius: 25,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40,
-    backgroundColor: "#FF1493",
-  },
-});
-
-
-export default function PageSignup({navigation}) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    function makeUser() {
-      var request2 = new XMLHttpRequest();
-      
-      request2.onreadystatechange = function() {
-        if (request2.readyState === XMLHttpRequest.DONE) {
-          console.log(request2.response)
-        }
-      }
-      request2.open('POST', 'https://tenq.chenpan.ca/user');
-      request2.setRequestHeader('Content-Type', 'application/json');
-      request2.setRequestHeader( 'Accept',"application/json, text/plain, /")
-      const obj = {"username":"test2", "password":"aA123456", "stressLevel":10}
-      const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
-      request2.send(blob);
-      // write value to file
-    };
-    
-    return (
-      <ScrollView>
-      <View style={styles.container}>
-        <Image
-          style={styles.logo}
-          source={{uri: 'https://sites.google.com/site/josephjaywilliams/_/rsrc/1322072013994/home/NIPS20picture.jpeg'}}
-        />
-      
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Email."
-          placeholderTextColor="#003f5c"
-          onChangeText={(email) => setEmail(email)}
-        />
-      </View>
-
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password."
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-      </View>
-
+ import {
+   SafeAreaView,
+   ScrollView,
+   StatusBar,
+   StyleSheet,
+   Text,
+   useColorScheme,
+   View,
+   Button,
+   Alert,
+   TextInput,
+   Dimensions,
+ } from 'react-native';
+ // import styles from './styles';
+ //  import MyStack from './stackNavigator';
+ //  const stackNavigator = MyStack()
+ 
+ const windowWidth = Dimensions.get('window').width;
+ const windowHeight = Dimensions.get('window').height;
+ 
+ 
+ 
+ const styles = StyleSheet.create({
+   container: {
+     flex: 1,
+     backgroundColor: "#fff",
+     alignItems: "center",
+     justifyContent: "center",
+     paddingTop: 50,
+   },
+ 
+   logo: {
+     width: 500,
+     height: 500,
+     marginBottom: 40,
+   },
+ 
+ 
+   inputView: {
+     backgroundColor: "#FFC0CB",
+     borderRadius: 30,
+     width: "70%",
+     height: 45,
+     marginBottom: 20,
+ 
+     alignItems: "center",
+   },
+ 
+   TextInput: {
+     height: 50,
+     flex: 1,
+     padding: 10,
+     marginLeft: 20,
+   },
+ 
+   forgot_button: {
+     height: 15,
+     marginBottom: 10,
+   },
+ 
+   loginBtn: {
+     width: "80%",
+     borderRadius: 25,
+     height: 50,
+     alignItems: "center",
+     justifyContent: "center",
+     marginTop: 40,
+     backgroundColor: "#FF1493",
+   },
+   containerList: {
+     flex: 1,
+     paddingTop: 22
+     },
+     item: {
+       padding: 10,
+       fontSize: 18,
+       height: 44,
+     },
+   container: {
+     flex: 1,
+     justifyContent: 'center',
+     marginHorizontal: 16,
+   },
+   title: {
+     textAlign: 'center',
+     marginVertical: 8,
+     fontSize: 20,
+   },
+   fixToText: {
+     flexDirection: 'row',
+     justifyContent: 'space-between',
+   },
+   fixToTextCenter: {
+       flexDirection: 'row',
+       justifyContent: 'center',
+   },
+   separator: {
+     marginVertical: 50,
+     borderBottomColor: 'rgba(158, 150, 150, .5)',
+     borderBottomWidth: StyleSheet.hairlineWidth,
+   },
+   input: {
+       height: windowHeight*0.25,
+       margin: 12,
+       borderWidth: 1,
+       padding: 10,
+       width: windowWidth/1.25,  
+   },
+ });
+ 
+ const Separator = () => (
+   <View style={styles.separator} />
+ );
+ 
+ // create GET call to fetch data and store in some data structure.
+ const fetchData = () => {
+ return fetch("https://randomuser.me/api/")
+       .then((response) => response.json())
+       .then((data) => console.log(data));}
+ 
+ const PageRecord = ({navigation}) => {
+ 
+   // Need to change response1 and onchangetext, not sure what it is.
+   // Store GET datat in some data structure. Need one for question and answer.
+ 
+   
+   const [response1, onChangeText] = React.useState(null);
+   return(
+   <SafeAreaView style={styles.container}>
+     <View style={styles.fixToTextCenter}>
+       
+       <Text style={styles.title}>
+           Question goes here.
+       </Text>
+     </View>
+     <Separator />
+     <View style={styles.fixToTextCenter}>
+   
+     <TextInput
+       multiline={true}
+       style={styles.input}
+       onChangeText={onChangeText}
+       placeholder = {response1}
+     />
+     </View>
+     <Separator />
      
-
-      <TouchableOpacity style={styles.loginBtn} onPress={()=>navigation.navigate('Dashboard')}>
-        <Text style={styles.loginText}>LOGIN</Text>
-      </TouchableOpacity>
-      </View>
-      </ScrollView>
-    );
-  }
+     <View>
+       
+       <View style={styles.fixToText}>
+         <Button
+           title="Previous"
+           onPress={() => navigation.goBack()}
+         />
+         <Button
+           title="Next"
+           onPress={() => navigation.navigate('Page3')}
+         />
+       </View>
+     </View>
+   </SafeAreaView>
+   );
+ };
+   
+ 
+ 
+ export default PageRecord;
+  
