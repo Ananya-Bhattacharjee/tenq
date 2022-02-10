@@ -32,24 +32,15 @@
   );
   
   const PageRating = ({navigation}) => {
-    const [rating2, setRating2] = React.useState();
+    //const [rating2, setRating2] = React.useState();
     function retVal(value) {
-      setRating2(value);
-      console.log(value);
+      // setRating1(value);
+      global.responses["rat2"] = value;
+      console.log(global.responses);
       // write value to file
     };
-    function onSubmit(){
-      // console.log(rating1)
-      // console.log(respnse1);
-      // console.log(response3)
-      // console.log(response4)
-      // console.log(response5)
-      // console.log(response6)
-      // console.log(response7)
-      // console.log(response8)
-      // console.log(response9)
-      // console.log(rating2)
-      navigation.popToTop()
+    function Submit(){
+      console.log(global.responses);
     }
     const ratingScale=[
         {label: "0", value:0},
@@ -82,7 +73,7 @@
             formHorizontal={true}
             buttonSize={10}
             labelHorizontal={false}
-            onPress={(value)=>{}}
+            onPress={(value)=>retVal(value)}
           />
 
         </View>
@@ -98,7 +89,7 @@
           />
           <Button
             title="Submit"
-            onPress={() => onSubmit()}
+            onPress={() => {Submit(); navigation.popToTop(); navigation.goBack()}}
           />
         </View>
       </View>

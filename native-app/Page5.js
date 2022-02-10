@@ -31,6 +31,12 @@
   
   const Page5= ({navigation}) => {
     const [response5, onChangeText] = React.useState(null);
+    function retVal() {
+      // setRating1(value);
+      global.responses["res5"] = response5;
+      console.log(global.responses);
+      // write value to file
+    };
     return(
     <SafeAreaView style={styles.container}>
       <View style={styles.fixToTextCenter}>
@@ -56,11 +62,11 @@
         <View style={styles.fixToText}>
           <Button
             title="Previous"
-            onPress={() => navigation.goBack()}
+            onPress={() => {retVal(); navigation.goBack()}}
           />
           <Button
             title="Next"
-            onPress={() => navigation.navigate('Page6')}
+            onPress={() => {retVal(); navigation.navigate('Page6')}}
           />
         </View>
       </View>

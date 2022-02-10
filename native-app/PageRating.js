@@ -33,12 +33,44 @@
 
   
   const PageRating = ({navigation}) => {
-    const [rating1, setRating1] = React.useState();
+    // const [rating1, setRating1] = React.useState();
     function retVal(value) {
-      setRating1(value);
-      console.log(value);
+      // setRating1(value);
+      global.responses["rat1"] = value;
+      console.log(global.responses);
       // write value to file
     };
+    function getNewSurvey(){
+    request.onreadystatechange = function() {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        // var jsonObj = new JSONObject(request.responseText);
+        // var message = jsonObj.getString("message");
+        let obj = JSON.parse(request.response)
+        
+        var status = request.status;
+        global.userId = obj["data"]["_id"]
+        global.surveys = obj["data"]["surveyIds"]
+        console.log(global.userId)
+        var message = ""
+        if (status===200){message = "Logged in"; navigation.navigate("Dashboard")}
+        if (status === 404){message="Username not found"}
+        if (status === 403){message="Incorrect password"}
+        if (status === 500){message = "Hmmm something went wrong, try again later"}
+        Snackbar.show({
+          text: message,
+          duration: Snackbar.LENGTH_SHORT,
+        });
+        
+      }
+    
+    request.open('POST', 'https://tenq.chenpan.ca/login/');
+    request.setRequestHeader('Content-Type', 'application/json');
+    const obj = {"username":email, "password":password}
+    const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+    request.send(blob);
+    }
+    // write value to file
+  };
     const ratingScale=[
         {label: "0", value:0},
         {label: "1", value:1},

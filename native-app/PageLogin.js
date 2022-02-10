@@ -73,8 +73,12 @@ export default function PageLogin({navigation}) {
         if (request.readyState === XMLHttpRequest.DONE) {
           // var jsonObj = new JSONObject(request.responseText);
           // var message = jsonObj.getString("message");
-          console.log(request.response)
+          let obj = JSON.parse(request.response)
+          
           var status = request.status;
+          global.userId = obj["data"]["_id"]
+          global.surveys = obj["data"]["surveyIds"]
+          console.log(global.userId)
           var message = ""
           if (status===200){message = "Logged in"; navigation.navigate("Dashboard")}
           if (status === 404){message="Username not found"}
