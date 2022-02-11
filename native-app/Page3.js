@@ -7,6 +7,8 @@
  */
 
  import React from 'react';
+ import { AsyncStorage } from 'react-native';
+
  import {
    SafeAreaView,
    ScrollView,
@@ -35,6 +37,9 @@
       global.responses["res3"] = response3;
       console.log(global.responses);
       // write value to file
+      AsyncStorage.getItem('r1', (err, result) => {
+        console.log(result);
+      });
     };
     return(
     <SafeAreaView style={styles.container}>
