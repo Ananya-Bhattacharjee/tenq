@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, FlatList,Picker } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, FlatList} from "react-native";
+import  {Picker} from '@react-native-picker/picker'
 
-const PageHistory = ({navigation}) => {
+export default function PageHistory({navigation}){
   
   let new_list = [{key: 'Devin'},
           {key: 'Dan'},
@@ -13,7 +14,7 @@ const PageHistory = ({navigation}) => {
           {key: 'Jillian'},
           {key: 'Jimmy'},
           {key: 'Julie'},]
-  const [maxList, setMaxList] = useState(5)
+  const [maxList, setMaxList] = useState(10)
   const [count, setCount] = useState(0);
   const onPress = () => setCount(prevCount => (prevCount+1)>new_list.length/maxList?prevCount:prevCount+1);
   const onPress2 = () => setCount(prevCount => (prevCount - 1)<=-1?prevCount:prevCount-1);
@@ -35,15 +36,15 @@ const PageHistory = ({navigation}) => {
         <TouchableOpacity style={styles.button2}><Text>{count+2}</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button2} onPress={onPress}><Text>{count+3}</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button2} onPress={onPress}><Text>{">"}{">"}</Text></TouchableOpacity>
-        <Picker
+        {/* <Picker
         selectedValue={maxList}
-        style={styles.dropdown}
+        style={styles.button2}
         onValueChange={(itemValue, itemIndex) => setMaxList(itemValue)}
       >
         <Picker.Item  label="5" value="5"/>
         <Picker.Item label="10" value="10" />
         <Picker.Item label="50" value="50" />
-      </Picker>
+      </Picker> */}
       </View>
 
       <FlatList
@@ -117,5 +118,3 @@ const styles = StyleSheet.create({
     fontSize:26,
   }
 });
-
-export default PageHistory;

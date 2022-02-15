@@ -41,6 +41,14 @@
     };
     function Submit(){
       console.log(global.responses);
+
+      for (var i=0; i < 10; i++){
+          if (i ==0 || i == 9){
+            //post rating respone
+            //global.responses["rat"+(i/5)]
+          }
+
+      }
     }
     const ratingScale=[
         {label: "0", value:0},
@@ -89,7 +97,7 @@
           />
           <Button
             title="Submit"
-            onPress={() => {Submit(); navigation.popToTop(); navigation.goBack()}}
+            onPress={() => {Submit(); navigation.popToTop();}}
           />
         </View>
       </View>

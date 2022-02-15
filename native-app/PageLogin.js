@@ -91,8 +91,9 @@ export default function PageLogin({navigation}) {
           
         }
       }
-      
-      request.open('POST', 'https://tenq.chenpan.ca/login/');
+      var url ='localhost:11221/login/';
+      //var url = 'https://tenq.chenpan.ca/login/';
+      request.open('POST', url);
       request.setRequestHeader('Content-Type', 'application/json');
       const obj = {"username":email, "password":password}
       const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
