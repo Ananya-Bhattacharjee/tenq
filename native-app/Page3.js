@@ -37,9 +37,14 @@
       global.responses["res3"] = response3;
       console.log(global.responses);
       // write value to file
-      AsyncStorage.getItem('r1', (err, result) => {
-        console.log(result);
-      });
+      AsyncStorage.setItem(
+        'r3',
+        response3
+      );
+
+//      AsyncStorage.getItem('r1', (err, result) => {
+//        console.log(result);
+//      });
     };
     return(
     <SafeAreaView style={styles.container}>

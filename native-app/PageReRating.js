@@ -22,6 +22,7 @@
  } from 'react-native';
  import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel,} from 'react-native-simple-radio-button';
  import styles from './styles';
+ import { AsyncStorage } from 'react-native';
  
  
  
@@ -33,14 +34,20 @@
   
   const PageRating = ({navigation}) => {
     //const [rating2, setRating2] = React.useState();
-    function retVal(value) {
+    function retVal(value2) {
       // setRating1(value);
-      global.responses["rat2"] = value;
+      global.responses["rat2"] = value2;
       console.log(global.responses);
       // write value to file
+      AsyncStorage.setItem(
+        'rate2',
+        value2.toString()
+      );
+
     };
     function Submit(){
       console.log(global.responses);
+      global.responses={}
     }
     const ratingScale=[
         {label: "0", value:0},
@@ -73,7 +80,7 @@
             formHorizontal={true}
             buttonSize={10}
             labelHorizontal={false}
-            onPress={(value)=>retVal(value)}
+            onPress={(value2)=>retVal(value2)}
           />
 
         </View>

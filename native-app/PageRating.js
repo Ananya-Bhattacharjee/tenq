@@ -22,6 +22,7 @@
  } from 'react-native';
  import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel,} from 'react-native-simple-radio-button';
  import styles from './styles';
+ import { AsyncStorage } from 'react-native';
  
  
 
@@ -39,6 +40,15 @@
       global.responses["rat1"] = value;
       console.log(global.responses);
       // write value to file
+      AsyncStorage.setItem(
+        'rate1',
+        value.toString()
+      );
+      AsyncStorage.getItem('rate1', (err, result) => {
+        console.log(result);
+      });
+
+
     };
     function getNewSurvey(){
     request.onreadystatechange = function() {
