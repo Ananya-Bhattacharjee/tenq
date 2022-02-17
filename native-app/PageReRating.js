@@ -22,6 +22,7 @@
  } from 'react-native';
  import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel,} from 'react-native-simple-radio-button';
  import styles from './styles';
+ import { AsyncStorage } from 'react-native';
  
  
  
@@ -33,22 +34,61 @@
   
   const PageRating = ({navigation}) => {
     //const [rating2, setRating2] = React.useState();
-    function retVal(value) {
+    function retVal(value2) {
       // setRating1(value);
-      global.responses["rat2"] = value;
+      global.responses["rat2"] = value2;
       console.log(global.responses);
       // write value to file
+      AsyncStorage.setItem(
+        'rate2',
+        value2.toString()
+      );
+
     };
-    function Submit(){
-      console.log(global.responses);
-
-      for (var i=0; i < 10; i++){
-          if (i ==0 || i == 9){
-            //post rating respone
-            //global.responses["rat"+(i/5)]
-          }
-
+    function initializeSurvey(){
+      var request = new XMLHttpRequest();
+      
+      request.onreadystatechange = function() {
+        if (request.readyState === XMLHttpRequest.DONE) {
+          // var jsonObj = new JSONObject(request.responseText);
+          // var message = jsonObj.getString("message");
+          let obj = JSON.parse(request.response)
+          
+        
+          global.currSurvey = obj["data"]["_id"]
+          
+          console.log(global.userId)
+         
+          
+        }
       }
+      //var url ='localhost:11221/login/';
+      var url = 'https://tenq.chenpan.ca/survey/';
+      request.open('GET', url);
+      request.setRequestHeader('Content-Type', 'application/json');
+      const obj = {}
+      const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+      request.send(blob);
+    }
+    function Submit(){
+      
+      console.log(global.responses);
+      initializeSurvey();
+      var i = 0;
+      for (var key in global.responses){
+        var request = new XMLHttpRequest();
+        var content = global.responses[key]
+        var url = 'https://tenq.chenpan.ca/response/';
+        request.open('POST', url);
+        const obj = {"questionId":global.qids[i], "surveyId":global.currSurvey, 
+            "content":content}
+        request.setRequestHeader('Content-Type', 'application/json');
+          
+        const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+        request.send(blob);
+        i+=1;
+      }
+      global.responses={}
     }
     const ratingScale=[
         {label: "0", value:0},
@@ -81,7 +121,7 @@
             formHorizontal={true}
             buttonSize={10}
             labelHorizontal={false}
-            onPress={(value)=>retVal(value)}
+            onPress={(value2)=>retVal(value2)}
           />
 
         </View>

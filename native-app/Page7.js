@@ -22,6 +22,7 @@
    FlatList,
  } from 'react-native';
  import styles from './styles';
+ import { AsyncStorage } from 'react-native';
  
  
  
@@ -37,6 +38,11 @@
       global.responses["res7"] = response7;
       console.log(global.responses);
       // write value to file
+      AsyncStorage.setItem(
+        'r7',
+        response7
+      );
+
     };
     return(
     <SafeAreaView style={styles.container}>

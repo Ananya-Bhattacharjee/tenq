@@ -22,6 +22,7 @@
  } from 'react-native';
  
  import styles from './styles';
+ import { AsyncStorage } from 'react-native';
  
  
  
@@ -36,6 +37,11 @@
       global.responses["res6"] = response6;
       console.log(global.responses);
       // write value to file
+      AsyncStorage.setItem(
+        'r6',
+        response6
+      );
+
     };
     return(
     <SafeAreaView style={styles.container}>

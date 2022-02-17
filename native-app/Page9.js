@@ -21,6 +21,7 @@
    TextInput,
  } from 'react-native';
  import styles from './styles';
+ import { AsyncStorage } from 'react-native';
  
  
  
@@ -37,6 +38,11 @@
       global.responses["res9"] = response9;
       console.log(global.responses);
       // write value to file
+      AsyncStorage.setItem(
+        'r9',
+        response9
+      );
+
     };
     return(
     <SafeAreaView style={styles.container}>
