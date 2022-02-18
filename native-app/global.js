@@ -15,3 +15,5 @@ global.qids = ["61d8643c8b8601a5d1d46633",
     "620ae8ee82ce0b169d0db223"
     ]
 global.currSurvey = 0;
+global.username = "";
+global.password = "";

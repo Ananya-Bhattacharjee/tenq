@@ -1,19 +1,51 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+import { useFocusEffect } from '@react-navigation/native';
 import { StyleSheet, Text, TouchableOpacity, View, FlatList} from "react-native";
 import  {Picker} from '@react-native-picker/picker'
-
-export default function PageHistory({navigation}){
+import checkCred from './login.js'
+function getUser(){
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (request.readyState === XMLHttpRequest.DONE) {
+      // var jsonObj = new JSONObject(request.responseText);
+      // var message = jsonObj.getString("message");
+      let obj = JSON.parse(request.response)
+      global.surveys = obj["data"]["surveyIds"]
+      //console.log(global.surveys)
+    }
+  }
+  var url = 'https://tenq.chenpan.ca/user/';
+  request.open('GET', url);
+  const obj = {}
+  request.setRequestHeader('Content-Type', 'application/json');
+    
+  const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+  request.send(blob);
+}
+function parseSurveys(list_a){
+  let ret_lst = []
   
-  let new_list = [{key: 'Devin'},
-          {key: 'Dan'},
-          {key: 'Dominic'},
-          {key: 'Jackson'},
-          {key: 'James'},
-          {key: 'Joel'},
-          {key: 'John'},
-          {key: 'Jillian'},
-          {key: 'Jimmy'},
-          {key: 'Julie'},]
+  for (var id in list_a){
+    console.log(list_a[id])
+    ret_lst.push({key: list_a[id]})
+  }
+  return ret_lst;
+}
+export default function PageHistory({navigation}){
+  const [new_list, setNewList] = useState([])
+  useFocusEffect(
+    React.useCallback(() => {
+      checkCred();
+      getUser();
+      
+      setNewList(parseSurveys(global.surveys));
+      console.log(new_list)
+    }, [navigation])
+  );
+
+  
+  
+
   const [maxList, setMaxList] = useState(10)
   const [count, setCount] = useState(0);
   const onPress = () => setCount(prevCount => (prevCount+1)>new_list.length/maxList?prevCount:prevCount+1);
@@ -25,7 +57,7 @@ export default function PageHistory({navigation}){
 // TODO: connec to Johnny's page 
   return (
     
-    <View style={styles.container}>
+    <View style={styles.container} onLayout={checkCred, getUser}>
     <View style={styles.countContainer}>
     <Text style={styles.headingFont}>History</Text>
     </View>
