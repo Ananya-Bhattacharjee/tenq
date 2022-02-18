@@ -80,6 +80,8 @@ export default function PageLogin({navigation}) {
           global.surveys = obj["data"]["surveyIds"]
           console.log(global.userId)
           var message = ""
+          global.username = email;
+          global.password = password;
           if (status===200){message = "Logged in"; navigation.navigate("Dashboard")}
           if (status === 404){message="Username not found"}
           if (status === 403){message="Incorrect password"}
