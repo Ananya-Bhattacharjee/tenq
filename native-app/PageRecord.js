@@ -30,7 +30,6 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -123,19 +122,30 @@ const Separator = () => (
   <View style={styles.separator} />
 );
 
-// create GET call to fetch data and store in some data structure.
-const fetchData = () => {
-return fetch("https://randomuser.me/api/")
-      .then((response) => response.json())
-      .then((data) => console.log(data));}
+
+const getData = (resIDList) => {
+  n = resIDList.length;
+  const resID = {};
+  for (let i = 0; i < n; i++){
+    resID = resIDList[i]
+    url = 'localhost:11221/response/' + resID
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const resId = data._id
+      const questionId = data.questionId
+      const content = data.content
+      resID[resId] = [questionId, content]
+    })
+  }
+  return resID
+};
+
 
 const PageRecord = ({navigation}) => {
+  const resID = getData()
 
-  // Need to change response1 and onchangetext, not sure what it is.
-  // Store GET datat in some data structure. Need one for question and answer.
-
-  
-  const [response1, onChangeText] = React.useState(null);
+  const [onChangeText] = React.useState(null);
   return(
   <SafeAreaView style={styles.container}>
     <View style={styles.fixToTextCenter}>
