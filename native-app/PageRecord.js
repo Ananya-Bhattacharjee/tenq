@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    marginHorizontal: 16
+    marginHorizontal: 0
   },
   title: {
     textAlign: "center",
@@ -100,19 +100,19 @@ const styles = StyleSheet.create({
   fixToTextCenter: {
     flexDirection: "row",
     justifyContent: "center",
-    width: 1400
+    width: windowWidth
   },
   separator: {
-    marginVertical: 50,
+    marginVertical: 5,
     borderBottomColor: "rgba(158, 150, 150, .5)",
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   input: {
-    height: windowHeight * 0.25,
+    height: windowHeight * 0.15,
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    width: windowWidth / 1.25
+    width: windowWidth / 1.5
   }
 });
 
@@ -137,17 +137,30 @@ const getData = (resIDList) => {
   return resID;
 };
 
-const PageRecord = ({ navigation, resIDList }) => {
+const PageRecord = ({ navigation, route }) => {
   const [buttonsListArr, setNewList] = useState([]);
+  let dummyResID = [["q1","a1"],
+    ["BIG ASS QUESTION","a2"],
+    ["q3","a3"],
+    ["q4","a4"],
+    ["q5","a5"],
+    ["q6","a6"],
+    ["q7","a7"],
+    ["q8","a8"],
+    ["q9","a9"]
+  ]
   useFocusEffect(
     React.useCallback(() => {
-      let dummyResID = getData(resIDList);
-      console.log(resIDList);
+      //let dummyResID = getData(resIDList);
+      console.log(route.params.resIDList);
+      console.log(dummyResID);
       setNewList(
-        dummyResID.map((element) => (
+        route.params.resIDList.map((element) => (
           <SafeAreaView style={styles.container}>
             <View style={styles.fixToTextCenter}>
-              <Text style={styles.title}>{element[0]}</Text>
+              <Text style={styles.title}>
+                {element[0]}
+                </Text>
             </View>
             <Separator />
             <View style={styles.fixToTextCenter}>
@@ -162,31 +175,26 @@ const PageRecord = ({ navigation, resIDList }) => {
           </SafeAreaView>
         ))
       );
+      console.log(buttonsListArr)
     }, [])
   );
   // const [onChangeText] = React.useState(null);
-  // let dummyResID = [["q1","a1"],
-  //   ["BIG ASS QUESTION","a2"],
-  //   ["q3","a3"],
-  //   ["q4","a4"],
-  //   ["q5","a5"],
-  //   ["q6","a6"],
-  //   ["q7","a7"],
-  //   ["q8","a8"],
-  //   ["q9","a9"]
-  // ]
+  
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView>
       {buttonsListArr}
-      <View>
+      
+      
+    
         <View style={styles.fixToText}>
           <Button
             title="Back"
-            onPress={() => navigation.navigate("PageHistory")}
+            onPress={() => navigation.goBack()}
           />
         </View>
-      </View>
+        </ScrollView>
     </SafeAreaView>
   );
 };

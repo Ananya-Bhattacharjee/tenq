@@ -68,8 +68,12 @@ export default function PageHistory({navigation}){
   const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
   request.send(blob);
     };
-  
-  
+  //testing////////////////
+  const recordPress2 = ({id})=>{
+    let resID = [['1','1'], ['2','2'], ['3','3'], ['4','4'], ['5','5']]
+    navigation.navigate('PageRecord', {resIDList: resID})
+  }
+  //testing/////////////
 
   const [maxList, setMaxList] = useState(10)
   const [count, setCount] = useState(0);
@@ -106,7 +110,7 @@ export default function PageHistory({navigation}){
 
       <FlatList
         data={new_list.slice(count*maxList, count*maxList+maxList)}
-        renderItem={({item}) => <TouchableOpacity style={styles.button} onPress={() => recordPress({id: item.key})}><Text>{item.key}</Text></TouchableOpacity>}
+        renderItem={({item}) => <TouchableOpacity style={styles.button} onPress={() => recordPress2({id: item.key})}><Text>{item.key}</Text></TouchableOpacity>}
       />
       
     </View>
