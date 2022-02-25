@@ -70,7 +70,12 @@ export default function PageHistory({navigation}){
     };
   //testing////////////////
   const recordPress2 = ({id})=>{
-    let resID = [['1','1'], ['2','2'], ['3','3'], ['4','4'], ['5','5']]
+    var RandomNumber = Math.floor(Math.random() * 10) + 1 ;
+    let resID = [];
+    for (var i = 0; i<=RandomNumber; i++){
+      resID.push([String(i), String(i)])
+    }
+    //let resID = [['1','1'], ['2','2'], ['3','3'], ['4','4'], ['5','5']]
     navigation.navigate('PageRecord', {resIDList: resID})
   }
   //testing/////////////
