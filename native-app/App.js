@@ -28,14 +28,15 @@ import PageReRating from './PageReRating'
 import PageRatingDraw from './PageRatingDraw'
 import PageSignup from './PageSignup'
 import PageHistory from './PageHistory';
-
+import PageRecord from './PageRecord';
+import HistoryStack from './HistoryStack';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 
 const App: () => Node = () => {
    
-  MyStack = () => 
+ MyStack = () =>
   <Stack.Navigator screenOptions={{
   headerShown: false
   }}>
@@ -64,7 +65,7 @@ const App: () => Node = () => {
       <Drawer.Navigator>
         <Drawer.Screen name="TenQ" component={MyStack}/>
         <Drawer.Screen name="New Survey" component={PageRatingDraw} />
-        <Drawer.Screen name="Past responses" component={PageHistory} />
+        <Drawer.Screen name="Past responses" component={HistoryStack} />
         <Drawer.Screen name="Logout" component={PageLogin} options={{headerShown: false,  swipeEnabled: false  }}/>
       </Drawer.Navigator>
  

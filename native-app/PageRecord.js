@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
 const Separator = () => <View style={styles.separator} />;
 
 const getData = (resIDList) => {
+  console.log(resIDList)
   let n = resIDList.length;
   const resID = [];
   for (let i = 0; i < n; i++) {
@@ -141,6 +142,7 @@ const PageRecord = ({ navigation, resIDList }) => {
   useFocusEffect(
     React.useCallback(() => {
       let dummyResID = getData(resIDList);
+      console.log(resIDList);
       setNewList(
         dummyResID.map((element) => (
           <SafeAreaView style={styles.container}>

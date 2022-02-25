@@ -42,7 +42,32 @@ export default function PageHistory({navigation}){
       console.log(new_list)
     }, [navigation])
   );
+    const recordPress = ({id})=> {
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function() {
+      if (request.readyState === XMLHttpRequest.DONE) {
+      // var jsonObj = new JSONObject(request.responseText);
+      // var message = jsonObj.getString("message");
+      console.log(request.response)
+      let obj = JSON.parse(request.response)
+      let resID = [1,2,3,4,5]
+      if(obj['status_code']===200){
 
+      resID = obj["data"]["responseIds"]
+      }
+      navigation.navigate('PageRecord', {"resIDList":resID})
+      //console.log(global.surveys)
+    }
+  }
+  console.log(id)
+  var url = 'https://tenq.chenpan.ca/survey/'+id;
+  request.open('GET', url);
+  const obj = {}
+  request.setRequestHeader('Content-Type', 'application/json');
+    
+  const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+  request.send(blob);
+    };
   
   
 
@@ -81,7 +106,7 @@ export default function PageHistory({navigation}){
 
       <FlatList
         data={new_list.slice(count*maxList, count*maxList+maxList)}
-        renderItem={({item}) => <TouchableOpacity style={styles.button}><Text>{item.key}</Text></TouchableOpacity>}
+        renderItem={({item}) => <TouchableOpacity style={styles.button} onPress={() => recordPress({id: item.key})}><Text>{item.key}</Text></TouchableOpacity>}
       />
       
     </View>
