@@ -26,11 +26,13 @@ function parseSurveys(list_a){
   let ret_lst = []
   
   for (var id in list_a){
-    console.log(list_a[id])
+    //console.log(list_a[id])
     ret_lst.push({key: list_a[id]})
   }
   return ret_lst;
 }
+
+
 export default function PageHistory({navigation}){
   const [new_list, setNewList] = useState([])
   useFocusEffect(
@@ -39,47 +41,138 @@ export default function PageHistory({navigation}){
       getUser();
       
       setNewList(parseSurveys(global.surveys));
-      console.log(new_list)
+      
+      //console.log(new_list)
     }, [navigation])
   );
-    const recordPress = ({id})=> {
-      var request = new XMLHttpRequest();
-      request.onreadystatechange = function() {
+
+    async function get_response(resid){
+      var url = "https://tenq.chenpan.ca/response/" + resid;
+      var request2 = new XMLHttpRequest();
+      request2.onreadystatechange = function() {
+        if (request2.readyState === XMLHttpRequest.DONE) {
+          // var jsonObj = new JSONObject(request.responseText);
+          // var message = jsonObj.getString("message");
+          let data = JSON.parse(request2.response)
+          //console.log("logging data")
+          //console.log(data)
+          //global.view_survey[data["data"]["questionId"]]= data["data"]["content"]
+          let temp = r_list
+          temp[data["data"]["questionId"]] = data["data"]["content"]
+          setRlist(temp)
+        }
+      }
+      request2.open('GET', url);
+      const obj = {}
+      request2.setRequestHeader('Content-Type', 'application/json');
+      const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+      request2.send(blob);
+    }
+async function get_question(qid){
+  var url = "https://tenq.chenpan.ca/question/" + qid;
+  var request2 = new XMLHttpRequest();
+  //let response_lst = global.view_survey;
+  request2.onreadystatechange = function() {
+    if (request2.readyState === XMLHttpRequest.DONE) {
+      // var jsonObj = new JSONObject(request.responseText);
+      // var message = jsonObj.getString("message");
+      let data = JSON.parse(request2.response)
+      //console.log("logging data")
+      //console.log(data)
+      //response_lst[qid].push(data["data"]["content"])
+      //global.view_survey=response_lst
+      //console.log(data["data"]["content"])
+      if (data["status_code"]===200){
+      //global.question_content[qid]= data["data"]["content"]
+      let temp = q_list
+      temp[qid] = data["data"]["content"]
+      setQlist(temp)
+      }
+      //global.question_content[qid]= data["data"]["content"]
+    }
+  }
+  request2.open('GET', url);
+  const obj = {}
+  request2.setRequestHeader('Content-Type', 'application/json');
+  const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+  request2.send(blob);
+}
+async function get_questions(){
+  for (var i=0; i<global.qids.length; i++){
+    //console.log(global.qids[i])
+
+    await get_question(global.qids[i]);
+    //global.view_survey[id].push(ret_data)
+  }
+}
+  async function get_responses(id){
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = async function() {
       if (request.readyState === XMLHttpRequest.DONE) {
       // var jsonObj = new JSONObject(request.responseText);
       // var message = jsonObj.getString("message");
-      console.log(request.response)
+      //console.log(request.response)
       let obj = JSON.parse(request.response)
-      let resID = [1,2,3,4,5]
+      let resIDList = [1,2,3,4,5]
       if(obj['status_code']===200){
-
-      resID = obj["data"]["responseIds"]
+        resIDList = obj["data"]["responseIds"]
+        //let response_list = []
+        let n = resIDList.length;
+        for (let i = 0; i < n; i++) {
+          //console.log(resIDList)
+          var resid = resIDList[i];
+          await get_response(resid);
+        }
+        //get_questions();
       }
-      navigation.navigate('PageRecord', {"resIDList":resID})
-      //console.log(global.surveys)
-    }
+    }//console.log(global.surveys)
   }
-  console.log(id)
   var url = 'https://tenq.chenpan.ca/survey/'+id;
   request.open('GET', url);
   const obj = {}
   request.setRequestHeader('Content-Type', 'application/json');
-    
+  
   const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
   request.send(blob);
+}
+    async function recordPress(id){
+      //console.log("logging id:"+id)
+      // global.view_survey = {};
+      // global.question_content = {};
+      setQlist({})
+      setRlist({})
+      await get_responses(id);
+      await get_questions();
+      // console.log("log: global.view_survey")
+      // console.log(global.view_survey)
+      //global.view_survey=[['1','1'], ['2','2'], ['3','3'], ['4','4'], ['5','5']]
+      let ret_lst = []
+      for (var i=0; i<global.qids.length; i++){
+        let id = global.qids[i]
+        //console.log(global.view_survey[id])
+        ret_lst.push([q_list[id], r_list[id]])
+      }
+      console.log(r_list)
+      console.log(q_list)
+      setQlist({})
+      setRlist({})
+      //console.log(ret_lst)
+      navigation.navigate('PageRecord', {"resIDList":ret_lst})
     };
   //testing////////////////
-  const recordPress2 = ({id})=>{
-    var RandomNumber = Math.floor(Math.random() * 10) + 1 ;
-    let resID = [];
-    for (var i = 0; i<=RandomNumber; i++){
-      resID.push([String(i), String(i)])
-    }
-    //let resID = [['1','1'], ['2','2'], ['3','3'], ['4','4'], ['5','5']]
-    navigation.navigate('PageRecord', {resIDList: resID})
-  }
+  // const recordPress2 = ({id})=>{
+  //   var RandomNumber = Math.floor(Math.random() * 10) + 1 ;
+  //   let resID = [];
+  //   for (var i = 0; i<=RandomNumber; i++){
+  //     resID.push([String(i), String(i)])
+  //   }
+  //   //let resID = [['1','1'], ['2','2'], ['3','3'], ['4','4'], ['5','5']]
+  //   //console.log(resID)
+  //   navigation.navigate('PageRecord', {resIDList: resID})
+  // }
   //testing/////////////
-
+  const [q_list, setQlist] = useState({});
+  const [r_list, setRlist] = useState({});
   const [maxList, setMaxList] = useState(10)
   const [count, setCount] = useState(0);
   const onPress = () => setCount(prevCount => (prevCount+1)>new_list.length/maxList?prevCount:prevCount+1);
@@ -91,7 +184,7 @@ export default function PageHistory({navigation}){
 // TODO: connec to Johnny's page 
   return (
     
-    <View style={styles.container} onLayout={checkCred, getUser}>
+    <View style={styles.container}>
     <View style={styles.countContainer}>
     <Text style={styles.headingFont}>History</Text>
     </View>
@@ -115,7 +208,7 @@ export default function PageHistory({navigation}){
 
       <FlatList
         data={new_list.slice(count*maxList, count*maxList+maxList)}
-        renderItem={({item}) => <TouchableOpacity style={styles.button} onPress={() => recordPress2({id: item.key})}><Text>{item.key}</Text></TouchableOpacity>}
+        renderItem={({item}) => <TouchableOpacity style={styles.button} onPress={async () => {await recordPress(item.key);}}><Text>{item.key}</Text></TouchableOpacity>}
       />
       
     </View>

@@ -118,42 +118,54 @@ const styles = StyleSheet.create({
 
 const Separator = () => <View style={styles.separator} />;
 
-const getData = (resIDList) => {
-  console.log(resIDList)
+function getData(resIDList){
+  //console.log(resIDList)
   let n = resIDList.length;
-  const resID = [];
+  var resID = [0,0,0,0,0,0,0,0,0,0];
   for (let i = 0; i < n; i++) {
     var resid = resIDList[i];
-    var url = "localhost:11221/response/" + resid;
+    var url = "https://tenq.chenpan.ca/response/" + resid;
+    // async function fetch_data(url){
+    //   const response = await fetch(url)
+    //   const data = await response.json()
+      // const questionId = data["data"]["questionId"];
+      // const content = data["data"]["content"];
+      
+        //console.log(resID)
+      
+        
+      // })
+      
     fetch(url)
-      .then((response) => response.json())
+    .then((response) => response.json())
       .then((data) => {
-        const resId = data._id;
-        const questionId = data.questionId;
-        const content = data.content;
-        resID.push([questionId, content]);
-      });
+        resID[i] =  [data["data"]["questionId"], data["data"]["content"]];
+      })
+    
+    // fetch_data(url)
   }
+  console.log(resID);
   return resID;
 };
 
 const PageRecord = ({ navigation, route }) => {
   const [buttonsListArr, setNewList] = useState([]);
-  let dummyResID = [["q1","a1"],
-    ["BIG ASS QUESTION","a2"],
-    ["q3","a3"],
-    ["q4","a4"],
-    ["q5","a5"],
-    ["q6","a6"],
-    ["q7","a7"],
-    ["q8","a8"],
-    ["q9","a9"]
-  ]
+  const [dummyResID, setDummyList] = useState([]);
+  // let dummyResID = [["q1","a1"],
+  //   ["BIG ASS QUESTION","a2"],
+  //   ["q3","a3"],
+  //   ["q4","a4"],
+  //   ["q5","a5"],
+  //   ["q6","a6"],
+  //   ["q7","a7"],
+  //   ["q8","a8"],
+  //   ["q9","a9"]
+  // ]
   useFocusEffect(
     React.useCallback(() => {
-      //let dummyResID = getData(resIDList);
-      console.log(route.params.resIDList);
-      console.log(dummyResID);
+      // setDummyList( )
+      //console.log(route.params.resIDList);
+      //console.log(route.params.resIDList)
       setNewList(
         route.params.resIDList.map((element) => (
           <SafeAreaView style={styles.container}>
@@ -175,8 +187,8 @@ const PageRecord = ({ navigation, route }) => {
           </SafeAreaView>
         ))
       );
-      console.log(buttonsListArr)
-    }, [])
+      //console.log(buttonsListArr);
+    }, [route.params.resIDList])
   );
   // const [onChangeText] = React.useState(null);
   
@@ -191,7 +203,7 @@ const PageRecord = ({ navigation, route }) => {
         <View style={styles.fixToText}>
           <Button
             title="Back"
-            onPress={() => navigation.goBack()}
+            onPress={() => {setNewList([]), navigation.goBack()}}
           />
         </View>
         </ScrollView>

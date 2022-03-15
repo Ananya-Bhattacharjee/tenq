@@ -1,19 +1,20 @@
 global.userId=0;
 global.surveys=[];
 global.responses = {};
-global.qids = ["61d8643c8b8601a5d1d46633",
-    "61d8661e90c1bbb24c62bbc2",
-    "620ae8ee82ce0b169d0db21a",
-    "620ae8ee82ce0b169d0db21b",
-    "620ae8ee82ce0b169d0db21c",
-    "620ae8ee82ce0b169d0db21d",
-    "620ae8ee82ce0b169d0db21e",
-    "620ae8ee82ce0b169d0db21f",
-    "620ae8ee82ce0b169d0db220",
-    "620ae8ee82ce0b169d0db221",
-    "620ae8ee82ce0b169d0db222",
-    "620ae8ee82ce0b169d0db223"
+global.qids = ["620b1fbb82ce0b169d0db267",
+    "620b1fbb82ce0b169d0db268",
+    "620b1fbb82ce0b169d0db269",
+    "620b1fbb82ce0b169d0db26a",
+    "620b1fbb82ce0b169d0db26b",
+    "620b1fbb82ce0b169d0db26c",
+    "620b1fbb82ce0b169d0db26d",
+    "620b1fbb82ce0b169d0db26e",
+    "620b1fbb82ce0b169d0db26f",
+    "620b1fbb82ce0b169d0db270"
     ]
+
 global.currSurvey = 0;
 global.username = "";
 global.password = "";
+global.view_survey = {};
+global.question_content = {};
