@@ -18,6 +18,7 @@
    View,
    Button,
    Alert,
+   Image
  } from 'react-native';
  
  
@@ -29,12 +30,18 @@
   const Home = ({navigation}) => (
     <SafeAreaView style={styles.container}>
       <View style={styles.fixToTextCenter}>
+      <Image
+          style={styles.logo}
+          source={require('./TenQ.png')}
+        />
         
-        <Button
+      </View>
+      <View style={styles.fixToTextCenter}>
+      <Button
           title="New Survey"
           onPress={() => navigation.navigate('PageRating')}
         />
-      </View>
+        </View>
       <Separator />
       <View style={styles.fixToTextCenter}>
     
@@ -71,6 +78,12 @@
       borderBottomColor: 'rgba(158, 150, 150, .5)',
       borderBottomWidth: StyleSheet.hairlineWidth,
     },
+    logo: {
+      width: 250,
+      height: 150,
+      marginBottom: 200,
+    },
+  
   });
   
   export default Home;

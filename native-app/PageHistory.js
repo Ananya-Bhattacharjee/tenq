@@ -26,8 +26,8 @@ function parseSurveys(list_a){
   let ret_lst = []
   
   for (var id in list_a){
-    //console.log(list_a[id])
-    ret_lst.push({key: list_a[id]})
+    console.log(global.view_survey[list_a[id]]["date"])
+    ret_lst.push({key: global.view_survey[list_a[id]]["date"], value: list_a[id]})
   }
   return ret_lst;
 }
@@ -135,27 +135,28 @@ async function get_questions(){
   const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
   request.send(blob);
 }
-    async function recordPress(id){
+    function recordPress(id){
       //console.log("logging id:"+id)
       // global.view_survey = {};
       // global.question_content = {};
-      setQlist({})
-      setRlist({})
-      await get_responses(id);
-      await get_questions();
+      // {"data": }
+      // setQlist({})
+      // setRlist({})
+      // await get_responses(id);
+      // await get_questions();
       // console.log("log: global.view_survey")
       // console.log(global.view_survey)
       //global.view_survey=[['1','1'], ['2','2'], ['3','3'], ['4','4'], ['5','5']]
       let ret_lst = []
       for (var i=0; i<global.qids.length; i++){
-        let id = global.qids[i]
+        let qid = global.qids[i]
         //console.log(global.view_survey[id])
-        ret_lst.push([q_list[id], r_list[id]])
+        ret_lst.push([global.question_content[qid], global.view_survey[id][qid]])
       }
-      console.log(r_list)
-      console.log(q_list)
-      setQlist({})
-      setRlist({})
+      // console.log(r_list)
+      // console.log(q_list)
+      // setQlist({})
+      // setRlist({})
       //console.log(ret_lst)
       navigation.navigate('PageRecord', {"resIDList":ret_lst})
     };
@@ -171,8 +172,8 @@ async function get_questions(){
   //   navigation.navigate('PageRecord', {resIDList: resID})
   // }
   //testing/////////////
-  const [q_list, setQlist] = useState({});
-  const [r_list, setRlist] = useState({});
+  // const [q_list, setQlist] = useState({});
+  // const [r_list, setRlist] = useState({});
   const [maxList, setMaxList] = useState(10)
   const [count, setCount] = useState(0);
   const onPress = () => setCount(prevCount => (prevCount+1)>new_list.length/maxList?prevCount:prevCount+1);
@@ -208,7 +209,7 @@ async function get_questions(){
 
       <FlatList
         data={new_list.slice(count*maxList, count*maxList+maxList)}
-        renderItem={({item}) => <TouchableOpacity style={styles.button} onPress={async () => {await recordPress(item.key);}}><Text>{item.key}</Text></TouchableOpacity>}
+        renderItem={({item}) => <TouchableOpacity style={styles.button} onPress={() =>recordPress(item.value)}><Text>{item.key}</Text></TouchableOpacity>}
       />
       
     </View>

@@ -1,5 +1,6 @@
 
 import React, { Component, useState } from "react";
+import {get_questions, get_responses} from "./getUserInfo"
 import {
   StyleSheet,
   Text,
@@ -66,13 +67,14 @@ const styles = StyleSheet.create({
 export default function PageLogin({navigation}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    function checkCred() {
+    async function checkCred() {
       var request = new XMLHttpRequest();
       
-      request.onreadystatechange = function() {
+      request.onreadystatechange = async function() {
         if (request.readyState === XMLHttpRequest.DONE) {
           // var jsonObj = new JSONObject(request.responseText);
           // var message = jsonObj.getString("message");
+          //console.log(request.response)
           let obj = JSON.parse(request.response)
           
           var status = request.status;
@@ -82,7 +84,17 @@ export default function PageLogin({navigation}) {
           var message = ""
           global.username = email;
           global.password = password;
-          if (status===200){message = "Logged in"; navigation.navigate("Dashboard")}
+          if (status===200){
+            message = "Logged in"; 
+            for (var i = 0; i<global.surveys.length; i+=1){
+              global.view_survey[global.surveys[i]] = {"date": "00-00-0000"}
+            }
+            await get_questions();
+            for (var i = 0; i<global.surveys.length; i+=1){
+              await get_responses(global.surveys[i])
+            }
+            navigation.navigate("Dashboard")
+          }
           if (status === 404){message="Username not found"}
           if (status === 403){message="Incorrect password"}
           if (status === 500){message = "Hmmm something went wrong, try again later"}
@@ -129,7 +141,7 @@ export default function PageLogin({navigation}) {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Email."
+          placeholder="Username"
           placeholderTextColor="#003f5c"
           onChangeText={(email) => setEmail(email)}
         />
@@ -138,14 +150,14 @@ export default function PageLogin({navigation}) {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Password."
+          placeholder="Password"
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
         />
       </View>
 
-      <TouchableOpacity onPress={()=>checkCred()}>
+      <TouchableOpacity onPress={async ()=>{await checkCred()}}>
         <Text style={styles.forgot_button}>Forgot Password?</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={()=>navigation.navigate("PageSignup")}>
