@@ -22,10 +22,24 @@
  } from 'react-native';
  import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel,} from 'react-native-simple-radio-button';
  import styles from './styles';
+ import { get_responses } from './getUserInfo';
  import { AsyncStorage } from 'react-native';
  
  
- 
+ let month = {
+  1: "Jan",
+  2: "Feb",
+  3: "Mar",
+  4: "Apr",
+  5: "May",
+  6: "Jun",
+  7: "Jul",
+  8: "Aug",
+  9: "Sep",
+  10: "Oct",
+  11: "Nov",
+  12: "Dec"
+}
  
  
  const Separator = () => (
@@ -34,6 +48,7 @@
   
   const PageRating = ({navigation}) => {
     //const [rating2, setRating2] = React.useState();
+    //const [currSurvey, setCurrSurvey] = React.useState(0)
     function retVal(value2) {
       // setRating1(value);
       global.responses["rat2"] = value2;
@@ -54,12 +69,14 @@
           // var message = jsonObj.getString("message");
           let obj = JSON.parse(request.response)
           
-        
+          if (request.status === 200){
           global.currSurvey = obj["data"]["_id"]
+          //setCurrSurvey(obj["data"]["_id"])
           
-          console.log(global.userId)
-         
-          
+          Submit(global.currSurvey);
+          }
+          //console.log("new survey id:")
+          //console.log(global.currSurvey)
         }
       }
       //var url ='localhost:11221/login/';
@@ -70,25 +87,36 @@
       const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
       request.send(blob);
     }
-    function Submit(){
+    function Submit(currSurvey){
       
-      console.log(global.responses);
-      initializeSurvey();
+      
+      //initializeSurvey();
+      //while (currSurvey === 0){}
+      var date = new Date();
+      var parse_Date = date.getDate()+' '+month[date.getMonth()+1]+' '+date.getFullYear()
+      global.view_survey[currSurvey] = {"date": parse_Date}
       var i = 0;
       for (var key in global.responses){
         var request = new XMLHttpRequest();
         var content = global.responses[key]
         var url = 'https://tenq.chenpan.ca/response/';
         request.open('POST', url);
-        const obj = {"questionId":global.qids[i], "surveyId":global.currSurvey, 
+        const obj = {"questionId":global.qids[i], "surveyId":currSurvey, 
             "content":content}
         request.setRequestHeader('Content-Type', 'application/json');
           
         const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
         request.send(blob);
+        //global.view_survey[global.currSurvey][global.qids[i]] = toString(content);
         i+=1;
       }
+      
+      global.surveys.push(currSurvey)
+      get_responses(currSurvey)
       global.responses={}
+      global.currSurvey=0;
+      
+      
     }
     const ratingScale=[
         {label: "0", value:0},
@@ -137,7 +165,7 @@
           />
           <Button
             title="Submit"
-            onPress={() => {Submit(); navigation.popToTop();}}
+            onPress={() => {initializeSurvey(); navigation.popToTop();}}
           />
         </View>
       </View>

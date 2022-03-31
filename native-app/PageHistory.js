@@ -26,7 +26,7 @@ function parseSurveys(list_a){
   let ret_lst = []
   
   for (var id in list_a){
-    console.log(global.view_survey[list_a[id]]["date"])
+    console.log(id)
     ret_lst.push({key: global.view_survey[list_a[id]]["date"], value: list_a[id]})
   }
   return ret_lst;
