@@ -45,6 +45,10 @@
         'r1',
         response1
       );
+      AsyncStorage.setItem(
+        'a_to',
+        '2'
+      );
       AsyncStorage.getItem('r1', (err, result) => {
         console.log(result);
       });

@@ -42,6 +42,10 @@
         'r7',
         response7
       );
+      AsyncStorage.setItem(
+        'a_to',
+        '7'
+      );
 
     };
     return(

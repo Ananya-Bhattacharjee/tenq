@@ -70,10 +70,18 @@
           let obj = JSON.parse(request.response)
           
           if (request.status === 200){
-          global.currSurvey = obj["data"]["_id"]
+          let currSurvey = obj["data"]["_id"]
           //setCurrSurvey(obj["data"]["_id"])
           
-          Submit(global.currSurvey);
+          Submit(currSurvey);
+          AsyncStorage.setItem(
+            'flag_tenq',
+            "0"
+          );
+          AsyncStorage.setItem(
+            'a_to',
+            "0"
+          );
           }
           //console.log("new survey id:")
           //console.log(global.currSurvey)

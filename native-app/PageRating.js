@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
- import React from 'react';
+ import React, { useEffect } from 'react';
 
  import {
    SafeAreaView,
@@ -44,6 +44,14 @@
         'rate1',
         value.toString()
       );
+      AsyncStorage.setItem(
+        'a_to',
+        '1'
+      );
+      AsyncStorage.setItem(
+        'flag_tenq',
+        '1'
+      );
       AsyncStorage.getItem('rate1', (err, result) => {
         console.log(result);
       });
@@ -63,7 +71,7 @@
         {label: "9", value:9},
         {label: "10", value:10},
     ]
-    
+    const [default_res, setDefault] = useEffect(0);
     return(
     <SafeAreaView style={styles.container}>
         
@@ -83,6 +91,7 @@
             formHorizontal={true}
             buttonSize={10}
             labelHorizontal={false}
+            initial = {default_res}
             onPress={(value)=>retVal(value)}
           />
 
