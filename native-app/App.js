@@ -64,7 +64,7 @@ const App: () => Node = () => {
      
       <Drawer.Navigator>
         <Drawer.Screen name="TenQ" component={MyStack}/>
-        <Drawer.Screen name="New Survey" component={PageRatingDraw} />
+        <Drawer.Screen name="New Survey" component={PageRating} />
         <Drawer.Screen name="Past responses" component={HistoryStack} />
         <Drawer.Screen name="Logout" component={PageLogin} options={{headerShown: false,  swipeEnabled: false  }}/>
       </Drawer.Navigator>

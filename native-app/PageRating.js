@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
- import React, { useEffect } from 'react';
+ import React, { useEffect, useState } from 'react';
 
  import {
    SafeAreaView,
@@ -35,6 +35,7 @@
   
   const PageRating = ({navigation}) => {
     // const [rating1, setRating1] = React.useState();
+    const [default_res, setDefault] = useState(5);
     function retVal(value) {
       // setRating1(value);
       global.responses["rat1"] = value;
@@ -70,13 +71,13 @@
         {label: "8", value:8},
         {label: "9", value:9},
         {label: "10", value:10},
-    ]
-    const [default_res, setDefault] = useEffect(0);
+    ];
+    
     return(
     <SafeAreaView style={styles.container}>
         
       <View style={styles.fixToTextCenter}>
-        
+         
         <Text style={styles.title}>
         Think of a particular situation where you felt stressed or had a negative emotion, which you can try to reflect
         on as you go through this activity. It could be a current situation, one in the past, or one you anticipate in the future.
@@ -104,7 +105,7 @@
         <View style={styles.fixToText}>
           <Button
             title="Quit"
-            onPress={() => navigation.popToTop()}
+            onPress={() => navigation.goBack()}
             
           />
           <Button
