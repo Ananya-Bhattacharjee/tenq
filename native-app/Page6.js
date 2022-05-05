@@ -23,7 +23,7 @@
  
  import styles from './styles';
  import { AsyncStorage } from 'react-native';
- 
+ import { useFocusEffect } from "@react-navigation/native";
  
  
  const Separator = () => (
@@ -32,6 +32,26 @@
   
   const Page6 = ({navigation}) => {
     const [response6, onChangeText] = React.useState(null);
+    const [default_res, setDefault] = React.useState("");
+    useFocusEffect(
+      React.useCallback(() => {
+        // setDummyList( )
+        //console.log(route.params.resIDList);
+        //console.log(route.params.resIDList)
+       async function get_button_info(){
+        await AsyncStorage.getItem('r6', (err, result) => {
+          console.log(result);
+          if (result != null){
+          setDefault(result)
+          onChangeText(result);
+          }
+        });
+        
+       }
+        get_button_info();
+        //console.log(buttonsListArr);
+      }, [])
+    );
     function retVal() {
       // setRating1(value);
       global.responses["res6"] = response6;
@@ -44,6 +64,10 @@
       AsyncStorage.setItem(
         'a_to',
         '6'
+      );
+      AsyncStorage.setItem(
+        'flag_tenq',
+        '1'
       );
 
     };
@@ -63,6 +87,7 @@
         style={styles.input}
         onChangeText={onChangeText}
         value={response6}
+        defaultValue = {default_res}
       />
       </View>
       <Separator />

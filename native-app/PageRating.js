@@ -6,8 +6,8 @@
  * @flow strict-local
  */
 
- import React, { useEffect, useState } from 'react';
-
+ import React, {useState } from 'react';
+ import { useFocusEffect } from "@react-navigation/native";
  import {
    SafeAreaView,
    ScrollView,
@@ -35,7 +35,27 @@
   
   const PageRating = ({navigation}) => {
     // const [rating1, setRating1] = React.useState();
-    const [default_res, setDefault] = useState(5);
+    const [default_res, setDefault] = React.useState(5);
+    useFocusEffect(
+      React.useCallback(() => {
+        // setDummyList( )
+        //console.log(route.params.resIDList);
+        //console.log(route.params.resIDList)
+       async function get_button_info(){
+        await AsyncStorage.getItem('rate1', (err, result) => {
+          //console.log(result);
+          if (result != null){
+          setDefault(parseInt(result))
+          
+          //global.responses["rat1"] = result
+          }
+        });
+        
+       }
+        get_button_info();
+        //console.log(buttonsListArr);
+      }, [])
+    );
     function retVal(value) {
       // setRating1(value);
       global.responses["rat1"] = value;

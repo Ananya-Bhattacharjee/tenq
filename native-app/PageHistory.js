@@ -25,7 +25,7 @@ function getUser(){
 function parseSurveys(list_a){
   let ret_lst = []
   
-  for (var id in list_a){
+  for (var id in list_a.reverse()){
     console.log(id)
     ret_lst.push({key: global.view_survey[list_a[id]]["date"], value: list_a[id]})
   }

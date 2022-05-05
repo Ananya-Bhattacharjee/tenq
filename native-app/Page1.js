@@ -7,6 +7,7 @@
  */
 
  import React from 'react';
+ import { useFocusEffect } from "@react-navigation/native";
  import { AsyncStorage } from 'react-native';
  import {
    SafeAreaView,
@@ -32,6 +33,7 @@
   
   const Page1 = ({navigation}) => {
     const [response1, onChangeText] = React.useState(null);
+    const [default_res, setDefault] = React.useState("");
     function retVal() {
       // setRating1(value);
       global.responses["res1"] = response1;
@@ -49,9 +51,11 @@
         'a_to',
         '2'
       );
-      AsyncStorage.getItem('r1', (err, result) => {
-        console.log(result);
-      });
+      AsyncStorage.setItem(
+        'flag_tenq',
+        '1'
+      );
+      
       /*_storeData = async () => {
         try {
           await AsyncStorage.setItem(
@@ -66,6 +70,25 @@
         }
       };*/
     };
+    useFocusEffect(
+      React.useCallback(() => {
+        // setDummyList( )
+        //console.log(route.params.resIDList);
+        //console.log(route.params.resIDList)
+       async function get_button_info(){
+        await AsyncStorage.getItem('r1', (err, result) => {
+          console.log(result);
+          if (result != null){
+          setDefault(result)
+          onChangeText(result);
+          }
+        });
+        
+       }
+        get_button_info();
+        //console.log(buttonsListArr);
+      }, [])
+    );
     return(
     <SafeAreaView style={styles.container}>
       <View style={styles.fixToTextCenter}>
@@ -82,6 +105,7 @@
         style={styles.input}
         onChangeText={onChangeText}
         value={response1}
+        defaultValue = {default_res}
       />
       </View>
       <Separator />

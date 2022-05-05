@@ -82,6 +82,42 @@
             'a_to',
             "0"
           );
+          AsyncStorage.setItem(
+            'rat1',
+            "0"
+          );
+          AsyncStorage.setItem(
+            'r1',
+            ""
+          );
+          AsyncStorage.setItem(
+            'r3',
+            ""
+          );
+          AsyncStorage.setItem(
+            'r4',
+            ""
+          );
+          AsyncStorage.setItem(
+            'r5',
+            ""
+          );
+          AsyncStorage.setItem(
+            'r6',
+            ""
+          );
+          AsyncStorage.setItem(
+            'r7',
+            ""
+          );
+          AsyncStorage.setItem(
+            'r8',
+            ""
+          );
+          AsyncStorage.setItem(
+            'r9',
+            ""
+          );
           }
           //console.log("new survey id:")
           //console.log(global.currSurvey)
