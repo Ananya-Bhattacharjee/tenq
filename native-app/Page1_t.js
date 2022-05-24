@@ -36,7 +36,9 @@
 //  import MyStack from './stackNavigator';
 //  const stackNavigator = MyStack()
  
- 
+   
+const audioRecorderPlayer = new AudioRecorderPlayer();
+audioRecorderPlayer.setSubscriptionDuration(0.09);
  
  const Separator = () => (
     <View style={styles.separator} />
@@ -54,9 +56,7 @@
       duration: '00:00:00',
     });
       
-    
-    const audioRecorderPlayer = new AudioRecorderPlayer();
-    audioRecorderPlayer.setSubscriptionDuration(0.09); 
+   
 
 
     
@@ -208,7 +208,7 @@
       const RNFS = require('react-native-fs');
       const path = RNFS.DocumentDirectoryPath + '/hello.m4a'; 
 
-      const audio = await audioRecorderPlayer.pausePlayer(path);
+      await audioRecorderPlayer.pausePlayer(path);
    };
    async function onStopPlay  (e) {
     console.log('onStopPlay');
