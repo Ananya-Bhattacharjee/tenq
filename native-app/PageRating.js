@@ -26,7 +26,19 @@
  
  
 
- 
+ const keyval = {
+   '0':0,
+   '1':1,
+   '2':2,
+   '3':3,
+   '4':4,
+   '5':5,
+   '6':6,
+   '7':7,
+   '8':8,
+   '9':9,
+   '10':10
+ }
  
  const Separator = () => (
     <View style={styles.separator} />
@@ -45,7 +57,8 @@
         await AsyncStorage.getItem('rate1', (err, result) => {
           //console.log(result);
           if (result != null){
-          setDefault(parseInt(result))
+            //console.log(keyval[result])
+          setDefault(keyval[result])
           
           //global.responses["rat1"] = result
           }
@@ -60,6 +73,7 @@
       // setRating1(value);
       global.responses["rat1"] = value;
       console.log(global.responses);
+      setDefault(value)
       // write value to file
       AsyncStorage.setItem(
         'rate1',
@@ -127,6 +141,10 @@
             title="Quit"
             onPress={() => navigation.goBack()}
             
+          />
+          <Button
+            title="Save & quit"
+            onPress={() => {retVal(default_res);navigation.goBack()}}
           />
           <Button
             title="Next"

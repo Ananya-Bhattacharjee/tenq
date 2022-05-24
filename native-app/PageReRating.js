@@ -208,6 +208,10 @@
             onPress={() => navigation.goBack()}
           />
           <Button
+            title="Save & quit"
+            onPress={() => {navigation.navigate("Dashboard")}}
+          />
+          <Button
             title="Submit"
             onPress={() => {initializeSurvey(); navigation.popToTop();}}
           />

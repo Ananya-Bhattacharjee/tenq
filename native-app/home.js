@@ -85,7 +85,7 @@ import { useFocusEffect } from "@react-navigation/native";
     }
   };
     
-  async function GetContinue()  {
+  async function GetContinue(navigation)  {
     var flag_tenq = await getFlag();
     console.log(flag_tenq)
     if (flag_tenq != '1'){
@@ -93,7 +93,7 @@ import { useFocusEffect } from "@react-navigation/native";
       <Button
       title="Continue"
       color="#f194ff"
-      onPress={() => Alert.alert('Button with adjusted color pressed')}
+      onPress={() => navigation.navigate('PageRating')}
       disabled
     />)
     }
@@ -103,7 +103,7 @@ import { useFocusEffect } from "@react-navigation/native";
       <Button
       title="Continue"
       color="#f194ff"
-      onPress={() => Alert.alert('Button with adjusted color pressed')}
+      onPress={() => navigation.navigate('PageRating')}
       />
       )
     }
@@ -116,7 +116,7 @@ import { useFocusEffect } from "@react-navigation/native";
       //console.log(route.params.resIDList);
       //console.log(route.params.resIDList)
      async function get_button_info(){
-      setContinue(await GetContinue())
+      setContinue(await GetContinue(navigation))
      }
       get_button_info();
       //console.log(buttonsListArr);

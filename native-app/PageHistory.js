@@ -179,7 +179,7 @@ async function get_questions(){
   const onPress = () => setCount(prevCount => (prevCount+1)>new_list.length/maxList?prevCount:prevCount+1);
   const onPress2 = () => setCount(prevCount => (prevCount - 1)<=-1?prevCount:prevCount-1);
   let char1="<";
-  
+  //setDefault(defaulfdict[key] => value)
 // TODO: get response list from API
 // TODO: build list navigation buttons
 // TODO: connec to Johnny's page 

@@ -16,6 +16,7 @@
     "@react-navigation/native-stack": "^6.2.5",
     "react": "17.0.2",
     "react-native": "0.66.3",
+    "react-native-audio-recorder-player": "^3.5.0",
     "react-native-fs": "^2.18.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-picker": "^4.3.7",

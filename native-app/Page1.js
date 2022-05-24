@@ -118,6 +118,10 @@
             onPress={() => {retVal(); navigation.goBack()}}
           />
           <Button
+            title="Save & quit"
+            onPress={() => {retVal(); navigation.navigate("Dashboard")}}
+          />
+          <Button
             title="Next"
             onPress={() => {retVal(); navigation.navigate('Page3')}}
           />

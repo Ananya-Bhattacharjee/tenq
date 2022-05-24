@@ -22,6 +22,7 @@ import Page1 from './Page1';
 import Page7 from './Page7';
 import Page8 from './Page8';
 import Page9 from './Page9';
+import Page1_t from './Page1_t';
 import PageRating from './PageRating'
 import PageLogin from './PageLogin';
 import PageReRating from './PageReRating'
@@ -44,7 +45,7 @@ const App: () => Node = () => {
 <Stack.Screen name="Dashboard" component={Home}/>
   {/*<Stack.Screen name="NewPage" component={Blank} />*/}
   <Stack.Screen name="Page6" component={Page6} />
-  <Stack.Screen name="Page1" component={Page1} />
+  <Stack.Screen name="Page1" component={Page1_t} />
   <Stack.Screen name="Page3" component={Page3} />
   <Stack.Screen name="Page4" component={Page4} />
   <Stack.Screen name="Page5" component={Page5} />
