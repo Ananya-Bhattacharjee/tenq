@@ -8,7 +8,8 @@
 
 import React from 'react';
 import type {Node} from 'react';
-
+import { useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -22,7 +23,14 @@ import Page1 from './Page1';
 import Page7 from './Page7';
 import Page8 from './Page8';
 import Page9 from './Page9';
-import Page1_t from './Page1_t';
+import Page1_v from './Page1_v';
+import Page6_v from './Page6_v'
+import Page5_v from './Page5_v';
+import Page4_v from './Page4_v';
+import Page3_v from './Page3_v';
+import Page7_v from './Page7_v';
+import Page8_v from './Page8_v';
+import Page9_v from './Page9_v';
 import PageRating from './PageRating'
 import PageLogin from './PageLogin';
 import PageReRating from './PageReRating'
@@ -36,7 +44,88 @@ const Drawer = createDrawerNavigator();
 
 
 const App: () => Node = () => {
-   
+  // getFlag = () => {
+  //   try {
+  //     const username = AsyncStorage.getItem('username');
+  //     const password = AsyncStorage.getItem('password')
+  //     console.log(username)
+  //     if (username !== null && password!=null) {
+  //       // We have data!!
+  //       return (username, password);
+  //     }
+  //     else{
+  //       return ('0', '0');
+  //     }
+  //   } catch (error) {
+  //     // Error retrieving data
+  //     return ('0', '0');
+  //   }
+  // };
+  // function GetContinue()  {
+  //   var username, password = getFlag();
+  //   console.log(username)
+  //   if (username=='0' || password=='0'){
+  //     return(
+  //       <Stack.Navigator screenOptions={{
+  //         headerShown: false
+  //         }}>
+  //         <Stack.Screen name="PageLogin" component={PageLogin} />
+  //       <Stack.Screen name="Dashboard" component={Home}/>
+  //         {/*<Stack.Screen name="NewPage" component={Blank} />*/}
+  //         <Stack.Screen name="Page6" component={Page6_v} />
+  //         <Stack.Screen name="Page1" component={Page1_v} />
+  //         <Stack.Screen name="Page3" component={Page3_v} />
+  //         <Stack.Screen name="Page4" component={Page4_v} />
+  //         <Stack.Screen name="Page5" component={Page5_v} />
+  //         <Stack.Screen name="Page7" component={Page7_v} />
+  //         <Stack.Screen name="Page8" component={Page8_v} />
+  //         <Stack.Screen name="Page9" component={Page9_v} />
+  //         <Stack.Screen name="PageRating" component={PageRating} />
+          
+  //         <Stack.Screen name="PageReRating" component={PageReRating} />
+  //         <Stack.Screen name="PageSignup" component={PageSignup} />
+  //       </Stack.Navigator>
+  //   )
+  //   }
+  //   else{ 
+  //     //console.log(Home2)
+  //     return(
+  //       <Stack.Navigator screenOptions={{
+  //         headerShown: false
+  //         }}>
+            
+  //       <Stack.Screen name="Dashboard" component={Home}/>
+  //         {/*<Stack.Screen name="NewPage" component={Blank} />*/}
+  //         <Stack.Screen name="Page6" component={Page6_v} />
+  //         <Stack.Screen name="Page1" component={Page1_v} />
+  //         <Stack.Screen name="Page3" component={Page3_v} />
+  //         <Stack.Screen name="Page4" component={Page4_v} />
+  //         <Stack.Screen name="Page5" component={Page5_v} />
+  //         <Stack.Screen name="Page7" component={Page7_v} />
+  //         <Stack.Screen name="Page8" component={Page8_v} />
+  //         <Stack.Screen name="Page9" component={Page9_v} />
+  //         <Stack.Screen name="PageRating" component={PageRating} />
+          
+  //         <Stack.Screen name="PageReRating" component={PageReRating} />
+  //         <Stack.Screen name="PageLogin" component={PageLogin} />
+  //         <Stack.Screen name="PageSignup" component={PageSignup} />
+  //       </Stack.Navigator>
+  //     )
+  //   }
+  // };
+  // const [continueButton, setContinue] = useState(null);
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     // setDummyList( )
+  //     //console.log(route.params.resIDList);
+  //     //console.log(route.params.resIDList)
+  //    function get_button_info(){
+  //     setContinue(GetContinue())
+  //    }
+  //     get_button_info();
+  //     //console.log(buttonsListArr);
+  //   }, [])
+  // );
  MyStack = () =>
   <Stack.Navigator screenOptions={{
   headerShown: false
@@ -58,13 +147,35 @@ const App: () => Node = () => {
   <Stack.Screen name="PageLogin" component={PageLogin} />
   <Stack.Screen name="PageSignup" component={PageSignup} />
 </Stack.Navigator>
+
+// Voice_Stack = () =>
+// <Stack.Navigator screenOptions={{
+//   headerShown: false
+//   }}>
+//     <Stack.Screen name="PageLogin" component={PageLogin} />
+// <Stack.Screen name="Dashboard" component={Home}/>
+//   {/*<Stack.Screen name="NewPage" component={Blank} />*/}
+//   <Stack.Screen name="Page6" component={Page6_v} />
+//   <Stack.Screen name="Page1" component={Page1_v} />
+//   <Stack.Screen name="Page3" component={Page3_v} />
+//   <Stack.Screen name="Page4" component={Page4_v} />
+//   <Stack.Screen name="Page5" component={Page5_v} />
+//   <Stack.Screen name="Page7" component={Page7_v} />
+//   <Stack.Screen name="Page8" component={Page8_v} />
+//   <Stack.Screen name="Page9" component={Page9_v} />
+//   <Stack.Screen name="PageRating" component={PageRating} />
+  
+//   <Stack.Screen name="PageReRating" component={PageReRating} />
+  
+//   <Stack.Screen name="PageSignup" component={PageSignup} />
+// </Stack.Navigator>
   return (   
    
     <NavigationContainer>
      
      
       <Drawer.Navigator>
-        <Drawer.Screen name="TenQ" component={MyStack}/>
+        <Drawer.Screen name="TenQ" component={Voice_Stack}/>
         <Drawer.Screen name="New Survey" component={PageRating} />
         <Drawer.Screen name="Past responses" component={HistoryStack} />
         <Drawer.Screen name="Logout" component={PageLogin} options={{headerShown: false,  swipeEnabled: false  }}/>

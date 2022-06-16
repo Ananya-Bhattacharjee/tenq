@@ -225,18 +225,18 @@ audioRecorderPlayer.setSubscriptionDuration(0.09);
       <View style={styles.fixToTextCenter}>
         
         <Text style={styles.title}>
-            What's the situation? Feel free to explain it in as much detail as you'd like.
+        What do you feel when you think this?
         </Text>
       </View>
       <Separator />
       <View style={styles.fixToTextCenter}>
     
-      <TextInput
+      {/* <TextInput
         multiline={true}
         style={styles.input}
         onChangeText={onChangeText}
         value={response1}
-      />
+      /> */}
       </View>
       <View style={styles.fixToTextCenter}>
           <Button mode="contained" icon="record" onPress={() => onStartRecord()} title="Record">
@@ -283,7 +283,7 @@ audioRecorderPlayer.setSubscriptionDuration(0.09);
           />
           <Button
             title="Next"
-            onPress={() => {retVal(); navigation.navigate('Page3')}}
+            onPress={() => {retVal(); navigation.navigate('Page6')}}
           />
         </View>
         

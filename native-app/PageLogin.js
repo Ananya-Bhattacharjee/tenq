@@ -1,6 +1,8 @@
 
 import React, { Component, useState } from "react";
 import {get_questions, get_responses} from "./getUserInfo"
+import { useFocusEffect } from "@react-navigation/native";
+import { AsyncStorage } from 'react-native';
 import {
   StyleSheet,
   Text,
@@ -67,9 +69,39 @@ const styles = StyleSheet.create({
 export default function PageLogin({navigation}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    useFocusEffect(
+    React.useCallback(() => {
+      // setDummyList( )
+      //console.log(route.params.resIDList);
+      //console.log(route.params.resIDList)
+     async function get_button_info(){
+      const username = await AsyncStorage.getItem('un');
+      const password = await AsyncStorage.getItem('pd')
+      
+       if (username !== null && password!=null) {
+          // We have data!!
+          setEmail(username)
+          setPassword(password)
+          checkCred()
+          //return (username, password);
+       }
+       
+      
+     }
+      get_button_info();
+      //console.log(buttonsListArr);
+    }, [])
+  );
     async function checkCred() {
       var request = new XMLHttpRequest();
-      
+      AsyncStorage.setItem(
+        'un', 
+        email
+      );
+      AsyncStorage.setItem(
+        'pd',
+        password
+      );
       request.onreadystatechange = async function() {
         if (request.readyState === XMLHttpRequest.DONE) {
           // var jsonObj = new JSONObject(request.responseText);
@@ -97,15 +129,27 @@ export default function PageLogin({navigation}) {
           }
           if (status === 404){message="Username not found"}
           if (status === 403){message="Incorrect password"}
-          if (status === 500){message = "Hmmm something went wrong, try again later"}
+          
           Snackbar.show({
             text: message,
             duration: Snackbar.LENGTH_SHORT,
           });
           
         }
+        else{
+          var status = request.status;
+          message = "Hmmm something went wrong, try again later"
+          if (status === 404){message="Username not found"}
+          if (status === 403){message="Incorrect password"}
+          Snackbar.show({
+            text: message,
+            duration: Snackbar.LENGTH_SHORT,
+          });
+        }
       }
       //var url ='localhost:11221/login/';
+      console.log(email)
+      console.log(password)
       var url = 'https://tenq.chenpan.ca/login/';
       request.open('POST', url);
       request.setRequestHeader('Content-Type', 'application/json');

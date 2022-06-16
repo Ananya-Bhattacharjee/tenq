@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     title: {
       textAlign: 'center',
       marginVertical: 8,
-      fontSize: 20,
+      fontSize: 30,
     },
     fixToText: {
       flexDirection: 'row',
@@ -32,9 +32,10 @@ const styles = StyleSheet.create({
     fixToTextCenter: {
         flexDirection: 'row',
         justifyContent: 'center',
+        marginBottom: 20
     },
     separator: {
-      marginVertical: 50,
+      marginVertical: 20,
       borderBottomColor: 'rgba(158, 150, 150, .5)',
       borderBottomWidth: StyleSheet.hairlineWidth,
     },
@@ -46,6 +47,19 @@ const styles = StyleSheet.create({
         width: windowWidth/1.25,
         
       },
+      buttonImageIconStyle:
+      {
+        width: 50,
+    height: 50,
+    backgroundColor: "#EEEEEE"
+
+      },
+      audioButtonStyles:{
+        marginHorizontal:10
+      },
+      audioTextStyles:{
+        fontSize: 20
+      }
   });
   
   export default styles;
