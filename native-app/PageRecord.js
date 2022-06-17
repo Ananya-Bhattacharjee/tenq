@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   fixToTextCenter: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     width: windowWidth
   },
   separator: {
@@ -179,13 +179,13 @@ const PageRecord = ({ navigation, route }) => {
             <View style={styles.fixToTextCenter}>
               {/* Display either text box or player button depending on the type of input */}
               {
-                // (element[2] === 'text') ? 
-                // <TextInput
-                //   multiline={true}
-                //   style={styles.input}
-                //   editable={false}
-                //   placeholder={element[1]}
-                // /> :
+                (element[1] != null) ?
+                 <TextInput
+                   multiline={true}
+                   style={styles.input}
+                   editable={false}
+                   placeholder={element[1]}
+                 /> :
                 <View style={styles.fixToTextCenter}>
                   <Button mode="contained" icon="play" onPress={() => onStartPlay()} title="Play">
                       PLAY
