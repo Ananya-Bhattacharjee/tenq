@@ -166,6 +166,7 @@ const PageRecord = ({ navigation, route }) => {
       // setDummyList( )
       //console.log(route.params.resIDList);
       //console.log(route.params.resIDList)
+      // [(question , answer), ... ,] ->
       setNewList(
         route.params.resIDList.map((element) => (
           <SafeAreaView style={styles.container}>

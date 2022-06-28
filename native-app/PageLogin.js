@@ -82,7 +82,7 @@ export default function PageLogin({navigation}) {
           // We have data!!
           setEmail(username)
           setPassword(password)
-          checkCred()
+          //checkCred()
           //return (username, password);
        }
        
@@ -106,13 +106,13 @@ export default function PageLogin({navigation}) {
         if (request.readyState === XMLHttpRequest.DONE) {
           // var jsonObj = new JSONObject(request.responseText);
           // var message = jsonObj.getString("message");
-          //console.log(request.response)
+          console.log(request.response)
           let obj = JSON.parse(request.response)
           
           var status = request.status;
           global.userId = obj["data"]["_id"]
           global.surveys = obj["data"]["surveyIds"]
-          console.log(global.userId)
+          console.log(status)
           var message = ""
           global.username = email;
           global.password = password;

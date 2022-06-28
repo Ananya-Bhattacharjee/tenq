@@ -126,49 +126,49 @@ const App: () => Node = () => {
   //     //console.log(buttonsListArr);
   //   }, [])
   // );
- MyStack = () =>
-  <Stack.Navigator screenOptions={{
-  headerShown: false
-  }}>
-    
-<Stack.Screen name="Dashboard" component={Home}/>
-  {/*<Stack.Screen name="NewPage" component={Blank} />*/}
-  <Stack.Screen name="Page6" component={Page6} />
-  <Stack.Screen name="Page1" component={Page1_t} />
-  <Stack.Screen name="Page3" component={Page3} />
-  <Stack.Screen name="Page4" component={Page4} />
-  <Stack.Screen name="Page5" component={Page5} />
-  <Stack.Screen name="Page7" component={Page7} />
-  <Stack.Screen name="Page8" component={Page8} />
-  <Stack.Screen name="Page9" component={Page9} />
-  <Stack.Screen name="PageRating" component={PageRating} />
-  
-  <Stack.Screen name="PageReRating" component={PageReRating} />
-  <Stack.Screen name="PageLogin" component={PageLogin} />
-  <Stack.Screen name="PageSignup" component={PageSignup} />
-</Stack.Navigator>
-
-// Voice_Stack = () =>
-// <Stack.Navigator screenOptions={{
+//  MyStack = () =>
+//   <Stack.Navigator screenOptions={{
 //   headerShown: false
 //   }}>
-//     <Stack.Screen name="PageLogin" component={PageLogin} />
+    
 // <Stack.Screen name="Dashboard" component={Home}/>
 //   {/*<Stack.Screen name="NewPage" component={Blank} />*/}
-//   <Stack.Screen name="Page6" component={Page6_v} />
-//   <Stack.Screen name="Page1" component={Page1_v} />
-//   <Stack.Screen name="Page3" component={Page3_v} />
-//   <Stack.Screen name="Page4" component={Page4_v} />
-//   <Stack.Screen name="Page5" component={Page5_v} />
-//   <Stack.Screen name="Page7" component={Page7_v} />
-//   <Stack.Screen name="Page8" component={Page8_v} />
-//   <Stack.Screen name="Page9" component={Page9_v} />
+//   <Stack.Screen name="Page6" component={Page6} />
+//   <Stack.Screen name="Page1" component={Page1_t} />
+//   <Stack.Screen name="Page3" component={Page3} />
+//   <Stack.Screen name="Page4" component={Page4} />
+//   <Stack.Screen name="Page5" component={Page5} />
+//   <Stack.Screen name="Page7" component={Page7} />
+//   <Stack.Screen name="Page8" component={Page8} />
+//   <Stack.Screen name="Page9" component={Page9} />
 //   <Stack.Screen name="PageRating" component={PageRating} />
   
 //   <Stack.Screen name="PageReRating" component={PageReRating} />
-  
+//   <Stack.Screen name="PageLogin" component={PageLogin} />
 //   <Stack.Screen name="PageSignup" component={PageSignup} />
 // </Stack.Navigator>
+
+Voice_Stack = () =>
+<Stack.Navigator screenOptions={{
+  headerShown: false
+  }}>
+    <Stack.Screen name="PageLogin" component={PageLogin} />
+<Stack.Screen name="Dashboard" component={Home}/>
+  {/*<Stack.Screen name="NewPage" component={Blank} />*/}
+  <Stack.Screen name="Page6" component={Page6_v} />
+  <Stack.Screen name="Page1" component={Page1_v} />
+  <Stack.Screen name="Page3" component={Page3_v} />
+  <Stack.Screen name="Page4" component={Page4_v} />
+  <Stack.Screen name="Page5" component={Page5_v} />
+  <Stack.Screen name="Page7" component={Page7_v} />
+  <Stack.Screen name="Page8" component={Page8_v} />
+  <Stack.Screen name="Page9" component={Page9_v} />
+  <Stack.Screen name="PageRating" component={PageRating} />
+  
+  <Stack.Screen name="PageReRating" component={PageReRating} />
+  
+  <Stack.Screen name="PageSignup" component={PageSignup} />
+</Stack.Navigator>
   return (   
    
     <NavigationContainer>

@@ -23,7 +23,8 @@ import React from 'react';
     var xhr = new XMLHttpRequest();
     
     let fd = new FormData();
-    let filename = RNFS.DocumentDirectoryPath + '/q1.m4a';
+    let filename = RNFS.DocumentDirectoryPath + '/hello.m4a';
+    audioBlob= GetFileBlobUsingURL(filename)
     fd.append("voice", audioBlob, filename);
     fd.append("projectName", `${props.project}`);
     fd.append("participantName", props.student.name);
@@ -35,4 +36,33 @@ import React from 'react';
 
     //setAlert("uploading");
     }
+//https://stackoverflow.com/questions/55611443/create-file-object-using-file-path
+    var GetFileBlobUsingURL = function (url) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.responseType = "blob";
+        xhr.addEventListener('load', function() {
+            blob = new Blob(xhr.response)
+            console.log(blob)
+        });
+        xhr.send();
+};
+
+// var blobToFile = function (blob, name) {
+//         blob.lastModifiedDate = new Date();
+//         blob.name = name;
+//         return blob;
+// };
+
+// var GetFileObjectFromURL = function(filePathOrUrl, convertBlob) {
+//        GetFileBlobUsingURL(filePathOrUrl, function (blob) {
+//           convertBlob(blobToFile(blob, 'testFile.jpg'));
+//        });
+// };
+// var FileURL="test/test.jpg"
+// GetFileObjectFromURL(FileURL, function (fileObject) {
+//      console.log(fileObject);
+// });
   }
+
+  export default upload;

@@ -30,6 +30,7 @@
    AudioSourceAndroidType,
   } from 'react-native-audio-recorder-player';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {upload} from './UploadVoice'
   
 //  import compose from 'recompose/compose'
 // import withState from 'recompose/withState'
@@ -93,6 +94,7 @@ audioRecorderPlayer.setSubscriptionDuration(0.01);
       AsyncStorage.getItem('r1', (err, result) => {
         console.log(result);
       });
+      upload();
       /*_storeData = async () => {
         try {
           await AsyncStorage.setItem(
