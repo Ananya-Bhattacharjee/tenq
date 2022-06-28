@@ -44,23 +44,23 @@ const Drawer = createDrawerNavigator();
 
 
 const App: () => Node = () => {
-  // getFlag = () => {
-  //   try {
-  //     const username = AsyncStorage.getItem('username');
-  //     const password = AsyncStorage.getItem('password')
-  //     console.log(username)
-  //     if (username !== null && password!=null) {
-  //       // We have data!!
-  //       return (username, password);
-  //     }
-  //     else{
-  //       return ('0', '0');
-  //     }
-  //   } catch (error) {
-  //     // Error retrieving data
-  //     return ('0', '0');
-  //   }
-  // };
+  const getFlag = () => {
+    try {
+      const username = AsyncStorage.getItem('username');
+      const password = AsyncStorage.getItem('password')
+      console.log(username)
+      if (username !== null && password!=null) {
+        // We have data!!
+        return (username, password);
+      }
+      else{
+        return ('0', '0');
+      }
+    } catch (error) {
+      // Error retrieving data
+      return ('0', '0');
+    }
+  };
   // function GetContinue()  {
   //   var username, password = getFlag();
   //   console.log(username)
@@ -126,63 +126,92 @@ const App: () => Node = () => {
   //     //console.log(buttonsListArr);
   //   }, [])
   // );
- MyStack = () =>
-  <Stack.Navigator screenOptions={{
-  headerShown: false
-  }}>
-    
-<Stack.Screen name="Dashboard" component={Home}/>
-  {/*<Stack.Screen name="NewPage" component={Blank} />*/}
-  <Stack.Screen name="Page6" component={Page6} />
-  <Stack.Screen name="Page1" component={Page1_t} />
-  <Stack.Screen name="Page3" component={Page3} />
-  <Stack.Screen name="Page4" component={Page4} />
-  <Stack.Screen name="Page5" component={Page5} />
-  <Stack.Screen name="Page7" component={Page7} />
-  <Stack.Screen name="Page8" component={Page8} />
-  <Stack.Screen name="Page9" component={Page9} />
-  <Stack.Screen name="PageRating" component={PageRating} />
-  
-  <Stack.Screen name="PageReRating" component={PageReRating} />
-  <Stack.Screen name="PageLogin" component={PageLogin} />
-  <Stack.Screen name="PageSignup" component={PageSignup} />
-</Stack.Navigator>
-
-// Voice_Stack = () =>
-// <Stack.Navigator screenOptions={{
+//  MyStack = () =>
+//   <Stack.Navigator screenOptions={{
 //   headerShown: false
 //   }}>
-//     <Stack.Screen name="PageLogin" component={PageLogin} />
+    
 // <Stack.Screen name="Dashboard" component={Home}/>
 //   {/*<Stack.Screen name="NewPage" component={Blank} />*/}
-//   <Stack.Screen name="Page6" component={Page6_v} />
-//   <Stack.Screen name="Page1" component={Page1_v} />
-//   <Stack.Screen name="Page3" component={Page3_v} />
-//   <Stack.Screen name="Page4" component={Page4_v} />
-//   <Stack.Screen name="Page5" component={Page5_v} />
-//   <Stack.Screen name="Page7" component={Page7_v} />
-//   <Stack.Screen name="Page8" component={Page8_v} />
-//   <Stack.Screen name="Page9" component={Page9_v} />
+//   <Stack.Screen name="Page6" component={Page6} />
+//   <Stack.Screen name="Page1" component={Page1_t} />
+//   <Stack.Screen name="Page3" component={Page3} />
+//   <Stack.Screen name="Page4" component={Page4} />
+//   <Stack.Screen name="Page5" component={Page5} />
+//   <Stack.Screen name="Page7" component={Page7} />
+//   <Stack.Screen name="Page8" component={Page8} />
+//   <Stack.Screen name="Page9" component={Page9} />
 //   <Stack.Screen name="PageRating" component={PageRating} />
   
 //   <Stack.Screen name="PageReRating" component={PageReRating} />
-  
+//   <Stack.Screen name="PageLogin" component={PageLogin} />
 //   <Stack.Screen name="PageSignup" component={PageSignup} />
 // </Stack.Navigator>
-  return (   
-   
-    <NavigationContainer>
-     
-     
+
+Voice_Stack = () =>
+<Stack.Navigator screenOptions={{
+  headerShown: false
+  }}>
+  {/* <Stack.Screen name="PageLogin" component={PageLogin} /> */}
+  <Stack.Screen name="Dashboard" component={Home}/>
+  {/*<Stack.Screen name="NewPage" component={Blank} />*/}
+  <Stack.Screen name="Page6" component={Page6_v} />
+  <Stack.Screen name="Page1" component={Page1_v} />
+  <Stack.Screen name="Page3" component={Page3_v} />
+  <Stack.Screen name="Page4" component={Page4_v} />
+  <Stack.Screen name="Page5" component={Page5_v} />
+  <Stack.Screen name="Page7" component={Page7_v} />
+  <Stack.Screen name="Page8" component={Page8_v} />
+  <Stack.Screen name="Page9" component={Page9_v} />
+  <Stack.Screen name="PageRating" component={PageRating} />
+  
+  <Stack.Screen name="PageReRating" component={PageReRating} />
+  
+  <Stack.Screen name="PageSignup" component={PageSignup} />
+</Stack.Navigator>
+  
+  var username, password = getFlag();
+  if (username=='0' || password=='0') {
+    return (
+      <NavigationContainer>
+      <Drawer.Screen name="Login" component={PageLogin} options={{headerShown: false,  swipeEnabled: false  }}/>
       <Drawer.Navigator>
         <Drawer.Screen name="TenQ" component={Voice_Stack}/>
         <Drawer.Screen name="New Survey" component={PageRating} />
         <Drawer.Screen name="Past responses" component={HistoryStack} />
         <Drawer.Screen name="Logout" component={PageLogin} options={{headerShown: false,  swipeEnabled: false  }}/>
       </Drawer.Navigator>
- 
     </NavigationContainer>
-  );
+    )
+  } else {
+    return (
+    <NavigationContainer>
+
+      <Drawer.Navigator>
+        <Drawer.Screen name="TenQ" component={Voice_Stack}/>
+        <Drawer.Screen name="New Survey" component={PageRating} />
+        <Drawer.Screen name="Past responses" component={HistoryStack} />
+        <Drawer.Screen name="Logout" component={PageLogin} options={{headerShown: false,  swipeEnabled: false  }}/>
+      </Drawer.Navigator>
+
+    </NavigationContainer>
+    )
+
+  }
+  
+//  return (
+//
+//    <NavigationContainer>
+//
+//      <Drawer.Navigator>
+//        <Drawer.Screen name="TenQ" component={Voice_Stack}/>
+//        <Drawer.Screen name="New Survey" component={PageRating} />
+//        <Drawer.Screen name="Past responses" component={HistoryStack} />
+//        <Drawer.Screen name="Logout" component={PageLogin} options={{headerShown: false,  swipeEnabled: false  }}/>
+//      </Drawer.Navigator>
+//
+//    </NavigationContainer>
+//  );
 };
 
 
