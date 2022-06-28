@@ -2,7 +2,7 @@
 import React, { Component, useState } from "react";
 import {get_questions, get_responses} from "./getUserInfo"
 import { useFocusEffect } from "@react-navigation/native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AsyncStorage } from 'react-native';
 import {
   StyleSheet,
   Text,

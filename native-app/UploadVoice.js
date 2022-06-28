@@ -18,18 +18,16 @@ import React from 'react';
  import { AsyncStorage } from 'react-native';
  
 
- async function upload(){
+ async function upload(surveyId, questionId){
     for (var i = 0; i<7; i++){
     var xhr = new XMLHttpRequest();
     
     let fd = new FormData();
     let filename = RNFS.DocumentDirectoryPath + '/hello.m4a';
     audioBlob= GetFileBlobUsingURL(filename)
-    fd.append("voice", audioBlob, filename);
-    fd.append("projectName", `${props.project}`);
-    fd.append("participantName", props.student.name);
-    fd.append("identifier", `${props.student.name}-${props.project}`);
-
+    fd.append("content", audioBlob, filename);
+    fd.append("questionId", questionId);
+    fd.append("surveyId", surveyId);
 
     xhr.open("POST", "/apis/voice", true);
     xhr.send(fd);
