@@ -29,7 +29,7 @@ import React from 'react';
     fd.append("questionId", questionId);
     fd.append("surveyId", surveyId);
 
-    xhr.open("POST", "/apis/voice", true);
+    xhr.open("POST", "https://tenq.chenpan.ca/response/", true);
     xhr.send(fd);
 
     //setAlert("uploading");
