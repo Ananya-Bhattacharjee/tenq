@@ -21,6 +21,7 @@ import {
   TextInput,
   Dimensions
 } from "react-native";
+import { onStartPlay, onPausePlay, onStopPlay } from "./recordFunction";
 // import styles from './styles';
 //  import MyStack from './stackNavigator';
 //  const stackNavigator = MyStack()
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
   },
   fixToTextCenter: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     width: windowWidth
   },
   separator: {
@@ -177,12 +178,38 @@ const PageRecord = ({ navigation, route }) => {
             </View>
             <Separator />
             <View style={styles.fixToTextCenter}>
-              <TextInput
-                multiline={true}
-                style={styles.input}
-                editable={false}
-                placeholder={element[1]}
-              />
+              {/* Display either text box or player button depending on the type of input */}
+              {
+                (element[1] != null) ?
+                 <TextInput
+                   multiline={true}
+                   style={styles.input}
+                   editable={false}
+                   placeholder={element[1]}
+                 /> :
+                <View style={styles.fixToTextCenter}>
+                  <Button mode="contained" icon="play" onPress={() => onStartPlay()} title="Play">
+                      PLAY
+                  </Button>
+                  <Button
+                    icon="pause"
+                    mode="contained"
+                    onPress={() => onPausePlay()}
+                    title="Pause"
+                  >
+                    PAUSE
+                  </Button>
+                  <Button
+                    icon="stop"
+                    mode="outlined"
+                    onPress={() => onStopPlay()}
+                    title="Stop"
+                  >
+                    STOP
+                  </Button>
+                </View>
+              }
+
             </View>
             <Separator />
           </SafeAreaView>
