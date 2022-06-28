@@ -2,7 +2,7 @@
 import React, { Component, useState } from "react";
 import {get_questions, get_responses} from "./getUserInfo"
 import { useFocusEffect } from "@react-navigation/native";
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   StyleSheet,
   Text,
@@ -79,11 +79,14 @@ export default function PageLogin({navigation}) {
       const password = await AsyncStorage.getItem('pd')
       
        if (username !== null && password!=null) {
+          console.log("found!");
           // We have data!!
           setEmail(username)
           setPassword(password)
           checkCred()
           //return (username, password);
+       } else {
+          console.log("not found:(")
        }
        
       
@@ -94,6 +97,7 @@ export default function PageLogin({navigation}) {
   );
     async function checkCred() {
       var request = new XMLHttpRequest();
+      // Make login credentials sotres on the first login
       AsyncStorage.setItem(
         'un', 
         email
@@ -107,7 +111,7 @@ export default function PageLogin({navigation}) {
           // var jsonObj = new JSONObject(request.responseText);
           // var message = jsonObj.getString("message");
           //console.log(request.response)
-          let obj = JSON.parse(request.response)
+          let obj = JSON.parse(request.response);
           
           var status = request.status;
           global.userId = obj["data"]["_id"]
