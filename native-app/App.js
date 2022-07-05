@@ -46,9 +46,10 @@ const Drawer = createDrawerNavigator();
 const App: () => Node = () => {
   const getFlag = () => {
     try {
-      const username = AsyncStorage.getItem('username');
-      const password = AsyncStorage.getItem('password')
-      console.log(username)
+      const username = AsyncStorage.getItem('un');
+      const password = AsyncStorage.getItem('pw');
+      console.log("username: " + username);
+      // might need to fix the login page
       if (username !== null && password!=null) {
         // We have data!!
         return (username, password);
