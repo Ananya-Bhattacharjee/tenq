@@ -30,7 +30,7 @@
    AudioSourceAndroidType,
   } from 'react-native-audio-recorder-player';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {upload} from './UploadVoice'
+import upload from './UploadVoice'
   
 //  import compose from 'recompose/compose'
 // import withState from 'recompose/withState'
@@ -41,7 +41,7 @@ import {upload} from './UploadVoice'
  
    
 const audioRecorderPlayer = new AudioRecorderPlayer();
-audioRecorderPlayer.setSubscriptionDuration(0.01);
+audioRecorderPlayer.setSubscriptionDuration(0.5); //0.01
  
  const Separator = () => (
     <View style={styles.separator} />
@@ -94,7 +94,7 @@ audioRecorderPlayer.setSubscriptionDuration(0.01);
       AsyncStorage.getItem('r1', (err, result) => {
         console.log(result);
       });
-      upload();
+      upload("62980a12f1557cd81abfc95f", "620b1fbb82ce0b169d0db268");
       /*_storeData = async () => {
         try {
           await AsyncStorage.setItem(
@@ -210,7 +210,7 @@ audioRecorderPlayer.setSubscriptionDuration(0.01);
     async function onStartPlay (e) {
       console.log('onStartPlay');
       const RNFS = require('react-native-fs');
-      const path = RNFS.DocumentDirectoryPath + '/hello.m4a'; 
+      const path = RNFS.DocumentDirectoryPath + '/hello.m4a';  //q1.m4a
       //const path = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";      
       const msg = await audioRecorderPlayer.startPlayer(path);
       //const msg = await audioRecorderPlayer.startPlayer();

@@ -1,51 +1,31 @@
-import React from 'react';
-
- import {
-   SafeAreaView,
-   ScrollView,
-   StatusBar,
-   StyleSheet,
-   Text,
-   useColorScheme,
-   View,
-   Button,
-   Alert,
-   TextInput,
- } from 'react-native';
- import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel,} from 'react-native-simple-radio-button';
- import styles from './styles';
- import { get_responses } from './getUserInfo';
- import { AsyncStorage } from 'react-native';
- 
-
+import RNFetchBlob from 'react-native-fetch-blob'
  async function upload(surveyId, questionId){
-    for (var i = 0; i<7; i++){
+    for (var i = 0; i<1; i++){
     var xhr = new XMLHttpRequest();
-    
+    xhr.onreadystatechange = function() {
+      console.log(xhr.readyState)
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        console.log(xhr.response)
+      }
+    }
+    var RNFS = require('react-native-fs');
     let fd = new FormData();
     let filename = RNFS.DocumentDirectoryPath + '/hello.m4a';
-    audioBlob= GetFileBlobUsingURL(filename)
+    var audioBlob = RNFetchBlob.wrap(filename)
+    console.log(audioBlob)
     fd.append("content", audioBlob, filename);
+    //fd.append("content", "test");
     fd.append("questionId", questionId);
     fd.append("surveyId", surveyId);
 
-    xhr.open("POST", "https://tenq.chenpan.ca/response/", true);
+    xhr.open("POST", "https://tenq.chenpan.ca/response/");
+    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
     xhr.send(fd);
-
+    console.log(fd)
     //setAlert("uploading");
     }
+  };
 //https://stackoverflow.com/questions/55611443/create-file-object-using-file-path
-    var GetFileBlobUsingURL = function (url) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.responseType = "blob";
-        xhr.addEventListener('load', function() {
-            blob = new Blob(xhr.response)
-            console.log(blob)
-        });
-        xhr.send();
-};
-
 // var blobToFile = function (blob, name) {
 //         blob.lastModifiedDate = new Date();
 //         blob.name = name;
@@ -61,6 +41,23 @@ import React from 'react';
 // GetFileObjectFromURL(FileURL, function (fileObject) {
 //      console.log(fileObject);
 // });
-  }
+  async function GetFileBlobUsingURL(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.responseType = "blob";
+    xhr.addEventListener('load', function() {
+        blob = new Blob(xhr.response)
+        console.log(blob)
+        return blob
+    });
+    xhr.send();
+};
 
+const getFile = async (url) => {
+  //const img_url = "https://picsum.photos/200/300.jpg";
+  let result = await fetch(url);
+  console.log(result);
+  console.log(await result.blob());
+  return result.blob();
+}
   export default upload;
